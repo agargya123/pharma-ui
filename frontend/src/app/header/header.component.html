@@ -1,9 +1,18 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <span>
+      <!-- <img src="../../assets/logo.png" class="angular-logo" /> -->
+      Pharma-Chain
+    </span>
     <span class="flex-spacer"></span>
-    <span
+    <span [hidden]="tokenValue"
       ><button mat-stroked-button routerLink="/login">
         Login
+      </button></span
+    >
+    <span *ngIf="tokenValue"
+      ><button mat-stroked-button (click)="logout()">
+        Logout
       </button></span
     >
   </mat-toolbar-row>

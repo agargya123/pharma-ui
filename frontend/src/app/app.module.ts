@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RoutingModule } from "./routing/routing.module";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -15,6 +15,13 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { HomeComponent } from "./home/home.component";
 import { MatCardModule } from "@angular/material/card";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+
+import { HttpClientModule } from "@angular/common/http";
+import { LoginService } from "./services/login.service";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -23,6 +30,7 @@ import { MatCardModule } from "@angular/material/card";
     LoginComponent,
     HeaderComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +44,14 @@ import { MatCardModule } from "@angular/material/card";
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
