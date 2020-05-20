@@ -1,3 +1,78 @@
-<p>
-  login works!
-</p>
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="20px"
+  fxLayoutGap.lt-md="0px"
+  fxLayoutAlign="center center"
+  class="container"
+>
+  <div fxFlex><h2>Welcome to Pharma-Chain Services</h2></div>
+  <div fxFlex>
+    <form
+      fxFlex="50"
+      novalidate
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="form-size"
+    >
+      <h3>Login</h3>
+      <p>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="username"
+            type="text"
+            name="username"
+            required
+            placeholder="Username"
+          />
+          <mat-error
+            *ngIf="
+              loginForm.get('username').hasError('required') &&
+              loginForm.get('username').touched
+            "
+          >
+            Username is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          ><input
+            matInput
+            formControlName="password"
+            type="password"
+            name="username"
+            required
+            placeholder="Password"
+          />
+          <mat-error
+            *ngIf="
+              loginForm.get('password').hasError('required') &&
+              loginForm.get('password').touched
+            "
+          >
+            Username is required
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <mat-form-field>
+        <mat-label>Your Role</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let role of roles" [value]="role">
+            <span class="select-text">{{ role | uppercase }}</span>
+          </mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="loginForm.get('role').hasError('required')"
+          >Please choose a role</mat-error
+        > -->
+      </mat-form-field>
+      <br />
+      <button mat-flat-button [disabled]="loginForm.invalid" type="submit">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div fxFlex>
+    <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+  </div>
+</div>
