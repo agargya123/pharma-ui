@@ -1,0 +1,120 @@
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="20px"
+  fxLayoutGap.lt-md="0px"
+  fxLayoutAlign="center center"
+  class="container"
+>
+  <div fxFlex><h2>Product Details</h2></div>
+  <div fxFlex>
+    <form
+      fxFlex="50"
+      novalidate
+      [formGroup]="manufacturedrugsForm"
+      (ngSubmit)="onSubmit()"
+      class="form-size"
+    >
+      
+      <p>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="manufacturerID"
+            type="text"
+            name="manufacturerID"
+            required
+            placeholder="Manufacturer ID"
+          />
+          <mat-error
+            *ngIf="
+            manufacturedrugsForm.get('manufacturerID').hasError('required') &&
+            manufacturedrugsForm.get('manufacturerID').touched
+            "
+          >
+          Manufacturer ID is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="drugName"
+          type="text"
+          name="drugName"
+          required
+          placeholder="Drug Name"
+        />
+        <mat-error
+          *ngIf="
+          manufacturedrugsForm.get('drugName').hasError('required') &&
+          manufacturedrugsForm.get('drugName').touched
+          "
+        >
+          Drug Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field 
+      ><input
+        matInput
+        formControlName="genericName"
+        type="text"
+        name="genericName"
+        required
+        placeholder="Generic Name"
+      />
+      <mat-error
+        *ngIf="
+        manufacturedrugsForm.get('genericName').hasError('required') &&
+        manufacturedrugsForm.get('genericName').touched
+        "
+      >
+        Generic Name
+      </mat-error>
+    </mat-form-field>
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="productsCreated"
+          type="number"
+          name="productsCreated"
+          required
+          placeholder="Number of products"
+        />
+        <mat-error
+          *ngIf="
+          manufacturedrugsForm.get('productsCreated').hasError('required') &&
+          manufacturedrugsForm.get('productsCreated').touched
+          "
+        >
+         Number of products is required
+        </mat-error>
+      </mat-form-field>
+ <br/>
+        <mat-form-field 
+        > <input matInput [matDatepicker]="myDatepicker"  placeholder="Expiry Date" 
+        formControlName="expiryDate">
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+        <mat-error
+      *ngIf="
+      manufacturedrugsForm.get('expiryDate').hasError('required') &&
+      manufacturedrugsForm.get('expiryDate').touched
+      "
+    >
+     Expiry Date is required
+    </mat-error>
+        
+      </mat-form-field>
+
+      </p>
+    
+      <br />
+      <button mat-flat-button [disabled]="manufacturedrugsForm.invalid" type="submit">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div fxFlex>
+    <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+  </div>
+</div>

@@ -18,10 +18,25 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+<<<<<<< HEAD
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+
+=======
+>>>>>>> 04836d7d36d1e030e96e22a627fd5672af453abe
 
 import { HttpClientModule } from "@angular/common/http";
 import { LoginService } from "./services/login.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+<<<<<<< HEAD
+import { FetchSaltsComponent } from './fetch-salts/fetch-salts.component';
+import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs.component';
+import { ManutodistformComponent } from './manutodistform/manutodistform.component';
+import { ManubyDistFormComponent } from './manuby-dist-form/manuby-dist-form.component';
+import { ExportProductsToPharmacistComponent } from './export-products-to-pharmacist/export-products-to-pharmacist.component';
+import { BuyProductsFromPharmacistComponent } from './buy-products-from-pharmacist/buy-products-from-pharmacist.component';
+=======
+>>>>>>> 04836d7d36d1e030e96e22a627fd5672af453abe
 
 @NgModule({
   declarations: [
@@ -31,10 +46,17 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     HeaderComponent,
     HomeComponent,
     DashboardComponent,
+    FetchSaltsComponent,
+    ManufactureDrugsComponent,
+    ManutodistformComponent,
+    ManubyDistFormComponent,
+    ExportProductsToPharmacistComponent,
+    BuyProductsFromPharmacistComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatMenuModule,
     FormsModule,
     RoutingModule,
@@ -50,6 +72,9 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     MatButtonModule,
     HttpClientModule,
     MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+   
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],

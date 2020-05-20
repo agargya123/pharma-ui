@@ -1,0 +1,105 @@
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="20px"
+  fxLayoutGap.lt-md="0px"
+  fxLayoutAlign="center center"
+  class="container"
+>
+  <div fxFlex><h2>Product Details</h2></div>
+  <div fxFlex>
+    <form
+      fxFlex="50"
+      novalidate
+      [formGroup]="manutodistForm"
+      (ngSubmit)="onSubmit()"
+      class="form-size"
+    >
+      
+      <p>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="manuId"
+            type="text"
+            name="manuId"
+            required
+            placeholder="Manufacturer ID"
+          />
+          <mat-error
+            *ngIf="
+            manutodistForm.get('manuId').hasError('required') &&
+            manutodistForm.get('manuId').touched
+            "
+          >
+            Manufacturer ID is required
+          </mat-error>
+        </mat-form-field>
+ 
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="distID"
+          type="text"
+          name="distID"
+          required
+          placeholder="Distributor ID"
+        />
+        <mat-error
+          *ngIf="
+          manutodistForm.get('distID').hasError('required') &&
+          manutodistForm.get('distID').touched
+          "
+        >
+          Distributor ID is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field 
+      ><input
+        matInput
+        formControlName="drugName"
+        type="text"
+        name="drugName"
+        required
+        placeholder="Drug Name"
+      />
+      <mat-error
+        *ngIf="
+        manutodistForm.get('drugName').hasError('required') &&
+        manutodistForm.get('drugName').touched
+        "
+      >
+        Drug Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field 
+    ><input
+      matInput
+      formControlName="shippingID"
+      type="text"
+      name="shippingID"
+      required
+      placeholder="Shipping ID"
+    />
+    <mat-error
+      *ngIf="
+      manutodistForm.get('shippingID').hasError('required') &&
+      manutodistForm.get('shippingID').touched
+      "
+    >
+     Shipping ID is required
+    </mat-error>
+  </mat-form-field>
+
+      </p>
+    
+      <br />
+      <button mat-flat-button [disabled]="manutodistForm.invalid" type="submit">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div fxFlex>
+    <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+  </div>
+</div>

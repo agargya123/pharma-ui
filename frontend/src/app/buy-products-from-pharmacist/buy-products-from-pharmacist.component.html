@@ -1,0 +1,123 @@
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="20px"
+  fxLayoutGap.lt-md="0px"
+  fxLayoutAlign="center center"
+  class="container"
+>
+  <div fxFlex><h2>Product Details</h2></div>
+  <div fxFlex>
+    <form
+      fxFlex="50"
+      novalidate
+      [formGroup]="buyfromPharma"
+      (ngSubmit)="onSubmit()"
+      class="form-size"
+    >
+      
+      <p>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="pharmacistId"
+            type="text"
+            name="pharmacistId"
+            required
+            placeholder="Pharmacist ID"
+          />
+          <mat-error
+            *ngIf="
+            buyfromPharma.get('pharmacistId').hasError('required') &&
+            buyfromPharma.get('pharmacistId').touched
+            "
+          >
+          Pharmacist ID is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="drugName"
+          type="text"
+          name="drugName"
+          required
+          placeholder="Drug Name"
+        />
+        <mat-error
+          *ngIf="
+          buyfromPharma.get('drugName').hasError('required') &&
+          buyfromPharma.get('drugName').touched
+          "
+        >
+          Drug Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field 
+      ><input
+        matInput
+        formControlName="boughtProducts"
+        type="number"
+        name="boughtProducts"
+        required
+        placeholder="Number of items bought"
+      />
+      <mat-error
+        *ngIf="
+        buyfromPharma.get('boughtProducts').hasError('required') &&
+        buyfromPharma.get('boughtProducts').touched
+        "
+      >
+        Number of products is required
+      </mat-error>
+    </mat-form-field>
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="customerID"
+          type="text"
+          name="customerID"
+          required
+          placeholder="Customer ID"
+        />
+        <mat-error
+          *ngIf="
+          buyfromPharma.get('customerID').hasError('required') &&
+          buyfromPharma.get('customerID').touched
+          "
+        >
+          Customer ID is required
+        </mat-error>
+      </mat-form-field>
+ 
+        <mat-form-field 
+        ><input
+          matInput
+          formControlName="invoiceNumber"
+          type="text"
+          name="invoiceNumber"
+          required
+          placeholder="Invoice Number"
+        />
+        <mat-error
+          *ngIf="
+          buyfromPharma.get('invoiceNumber').hasError('required') &&
+          buyfromPharma.get('invoiceNumber').touched
+          "
+        >
+          Invoice Number is required
+        </mat-error>
+      </mat-form-field>
+
+      </p>
+    
+      <br />
+      <button mat-flat-button [disabled]="buyfromPharma.invalid" type="submit">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div fxFlex>
+    <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+  </div>
+</div>
