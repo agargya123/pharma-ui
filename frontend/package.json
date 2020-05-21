@@ -26,6 +26,7 @@
     "angular-mgl-timeline": "^0.3.3",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
+    "tslib": "^1.6.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
