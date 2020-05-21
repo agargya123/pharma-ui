@@ -18,10 +18,10 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-
 import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
 import { MatDialogModule } from "@angular/material/dialog";
-
+import { MatListModule } from "@angular/material/list";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginService } from "./services/login.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -31,6 +31,11 @@ import { ManutodistformComponent } from "./manutodistform/manutodistform.compone
 import { ManubyDistFormComponent } from "./manuby-dist-form/manuby-dist-form.component";
 import { ExportProductsToPharmacistComponent } from "./export-products-to-pharmacist/export-products-to-pharmacist.component";
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
+import { TimelineComponent } from "./timeline/timeline.component";
+
+import { MglTimelineModule } from "angular-mgl-timeline";
+import { SaltListComponent } from "./salt-list/salt-list.component";
+import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.component";
 
 @NgModule({
   declarations: [
@@ -46,6 +51,9 @@ import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmaci
     ManubyDistFormComponent,
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
+    TimelineComponent,
+    SaltListComponent,
+    DrugBatchListComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +76,9 @@ import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmaci
     MatSelectModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MglTimelineModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
