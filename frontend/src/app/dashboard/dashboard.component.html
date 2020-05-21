@@ -1,7 +1,33 @@
-<div fxLayout="column" fxLayoutGap="20px" class="container">
-  <div fxFlex>
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxFlex class="container">
     <mat-card>
       <mat-card-title>Hello {{ username | uppercase }}</mat-card-title>
     </mat-card>
+  </div>
+
+  <div fxFlex class="menu-container">
+    <mat-card class="menu-card"
+      ><mat-card-content>
+        <button mat-button class="mat-button-class">
+          Salts
+        </button>
+        <button mat-button>
+          Drug Batch Available
+        </button>
+
+        <button mat-button [matMenuTriggerFor]="belowMenu">Transactions</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item>Fetch Salts</button>
+          <button mat-menu-item>Ship Products</button>
+        </mat-menu>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex>
+    <div fxFlex class="container">
+      <mat-card>
+        <mat-card-title>Hello {{ username | uppercase }}</mat-card-title>
+      </mat-card>
+    </div>
   </div>
 </div>

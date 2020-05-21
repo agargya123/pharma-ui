@@ -12,8 +12,13 @@ export class DashboardComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router) {
     this.loginService.getUsername().subscribe(
-      (data) => (this.username = data.toString()),
-      (error) => this.router.navigate(["/login"])
+      (data) => {
+        this.username = data.toString();
+      },
+      (error) => {
+        localStorage.clear();
+        this.router.navigate(["/login"]);
+      }
     );
   }
 
