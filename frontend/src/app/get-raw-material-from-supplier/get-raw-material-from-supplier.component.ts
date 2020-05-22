@@ -10,12 +10,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from "@angular/material";
 
 @Component({
-  selector: "app-fetch-salts",
-  templateUrl: "./fetch-salts.component.html",
-  styleUrls: ["./fetch-salts.component.scss"],
+  selector: "app-get-raw-material-from-supplier",
+  templateUrl: "./get-raw-material-from-supplier.component.html",
+  styleUrls: ["./get-raw-material-from-supplier.component.scss"],
 })
-export class FetchSaltsComponent implements OnInit {
-  public fetchSaltsForm: FormGroup;
+export class GetRawMaterialFromSupplierComponent implements OnInit {
+  public getRawMaterialForm: FormGroup;
   public rawMaterial: FormArray;
 
   constructor(
@@ -23,9 +23,10 @@ export class FetchSaltsComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.fetchSaltsForm = this.fb.group({
+    this.getRawMaterialForm = this.fb.group({
       rawMaterial: this.fb.array([this.createrawMaterial()]),
       supplierid: new FormControl("", Validators.required),
+      manufacturerid: new FormControl("", Validators.required),
     });
   }
 
@@ -38,18 +39,18 @@ export class FetchSaltsComponent implements OnInit {
     });
   }
   addSalt(): void {
-    this.rawMaterial = this.fetchSaltsForm.get("rawMaterial") as FormArray;
+    this.rawMaterial = this.getRawMaterialForm.get("rawMaterial") as FormArray;
     this.rawMaterial.push(this.createrawMaterial());
   }
   removeSalt(i: number) {
     this.rawMaterial.removeAt(i);
   }
   get saltControls() {
-    return this.fetchSaltsForm.get("rawMaterial")["controls"];
+    return this.getRawMaterialForm.get("rawMaterial")["controls"];
   }
 
   onSubmit() {
     console.log("Order is placed");
-    this.fetchSaltsForm.reset();
+    this.getRawMaterialForm.reset();
   }
 }
