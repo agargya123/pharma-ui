@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   username: String;
   role: String;
   methods: String[];
+  componentName: any;
   constructor(
     private loginService: LoginService,
     private router: Router,
@@ -34,12 +35,13 @@ export class DashboardComponent implements OnInit {
 
     this.role = localStorage.getItem("role");
 
-    this.methods = methodService.getMethodByRole(this.role);
+    this.methods = this.methodService.getMethodByRole(this.role);
   }
 
   ngOnInit() {}
 
-  openDialogForm(method) {
-    this.dialog.open(FetchSaltsComponent);
+  openDialogForm(method: string) {
+    this.componentName = this.methodService.getComponentByMethod(method);
+    this.dialog.open(this.componentName);
   }
 }

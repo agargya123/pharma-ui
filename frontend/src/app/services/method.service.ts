@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { METHODS } from "../shared/methods";
+import { METHODS, METHOD_COMPONENT_MAP } from "../shared/methods";
 
 @Injectable({
   providedIn: "root",
@@ -14,5 +14,10 @@ export class MethodService {
     if (role == "pharmacist") return METHODS.pharmacist;
 
     return undefined;
+  }
+
+  getComponentByMethod(functionName: string) {
+    return METHOD_COMPONENT_MAP.filter((fun) => fun.function == functionName)[0]
+      .component;
   }
 }
