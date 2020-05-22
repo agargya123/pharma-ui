@@ -13,7 +13,7 @@ export class FetchSaltsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    public dialog: MatDialog
+    public dialogRef: MatDialogRef<FetchSaltsComponent>
   ) {
     this.createForm();
   }
@@ -26,13 +26,10 @@ export class FetchSaltsComponent implements OnInit {
       quantity: new FormControl(0, Validators.required),
     });
   }
-  openFetchSatsForm() {
-    this.dialog.open(FetchSaltsComponent, { width: "500px", height: "450px" });
-  }
+
   onSubmit() {
     console.log("Order is placed");
     this.fetchSaltsForm.reset();
-    this.dialog.closeAll();
-    this.router.navigate(["/dashboard"]);
+    this.dialogRef.close();
   }
 }

@@ -32,10 +32,13 @@ import { ManubyDistFormComponent } from "./manuby-dist-form/manuby-dist-form.com
 import { ExportProductsToPharmacistComponent } from "./export-products-to-pharmacist/export-products-to-pharmacist.component";
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
 import { TimelineComponent } from "./timeline/timeline.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 import { MglTimelineModule } from "angular-mgl-timeline";
 import { SaltListComponent } from "./salt-list/salt-list.component";
 import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.component";
+import { MethodService } from "./services/method.service";
+import { ParticipantService } from "./services/participant.service";
 
 @NgModule({
   declarations: [
@@ -79,8 +82,9 @@ import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.compon
     MglTimelineModule,
     MatListModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService, MethodService, ParticipantService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatAccordion } from "@angular/material";
+import { ParticipantService } from "../services/participant.service";
+import { DrugBatch } from "../shared/drugBatch";
 
 @Component({
   selector: "app-drug-batch-list",
@@ -7,8 +9,21 @@ import { MatAccordion } from "@angular/material";
   styleUrls: ["./drug-batch-list.component.scss"],
 })
 export class DrugBatchListComponent implements OnInit {
-  // @ViewChild(MatAccordion) accordion: MatAccordion;
-  constructor() {}
+  listOfDrugBatch: DrugBatch[];
+  username: string;
+  role: string;
+  constructor(private participantService: ParticipantService) {
+    this.username = localStorage.getItem("username");
+    this.role = localStorage.getItem("role");
+    this.participantService
+      .getDrugBatchesDetails(this.username, this.role)
+      .subscribe(
+        (data) => {
+          this.listOfDrugBatch = data;
+        },
+        (error) => {}
+      );
+  }
 
   ngOnInit() {}
 }
