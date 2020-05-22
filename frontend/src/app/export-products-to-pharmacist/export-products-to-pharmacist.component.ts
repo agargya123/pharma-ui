@@ -18,7 +18,7 @@ export class ExportProductsToPharmacistComponent implements OnInit {
     this.exportToPharma = new FormGroup({
       pharmaID: new FormControl("", Validators.required),
       distID: new FormControl("", Validators.required),
-      shippingID: new FormControl(0, Validators.required),
+      batchID: new FormControl("", Validators.required),
     });
   }
   onSubmit() {
