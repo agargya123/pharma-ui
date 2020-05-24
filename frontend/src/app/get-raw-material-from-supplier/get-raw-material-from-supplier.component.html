@@ -68,37 +68,34 @@
         <div [formGroupName]="i">
           <div class="row">
             <div class="col-6">
-              <h4>Salt {{ i + 1 }}</h4>
-            </div>
-            <div class="col-6 text-right">
-              <button type="button" mat-stroked-button (click)="removeSalt(i)">
-                Remove
-              </button>
+              <h3>Salt {{ i + 1 }}</h3>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label>Salt Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="salt"
-                  placeholder="Salt Name"
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label>Quantity</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="quantity"
-                  placeholder="0"
-                />
-              </div>
-            </div>
+          <div class="row col-6">
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="salt"
+                type="text"
+                name="salt"
+                required
+                placeholder="Salt ID"
+              />
+            </mat-form-field>
+
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="quantity"
+                type="text"
+                name="quantity"
+                required
+                placeholder="Quantity of Salt"
+              />
+            </mat-form-field>
+            <button type="button" mat-flat-button (click)="removeSalt(i)">
+              Remove
+            </button>
           </div>
         </div>
       </section>

@@ -7,7 +7,7 @@ import { METHODS, METHOD_COMPONENT_MAP } from "../shared/methods";
 export class MethodService {
   constructor() {}
 
-  getMethodByRole(role: String): String[] {
+  getMethodByRole(role: String): any[] {
     if (role == "supplier") return METHODS.supplier;
     if (role == "manufacturer") return METHODS.manufacturer;
     if (role == "distributor") return METHODS.distributor;

@@ -12,6 +12,8 @@ export class DrugBatchListComponent implements OnInit {
   listOfDrugBatch: DrugBatch[];
   username: string;
   role: string;
+  errorMessage: string;
+
   constructor(private participantService: ParticipantService) {
     this.username = localStorage.getItem("username");
     this.role = localStorage.getItem("role");
@@ -21,7 +23,9 @@ export class DrugBatchListComponent implements OnInit {
         (data) => {
           this.listOfDrugBatch = data;
         },
-        (error) => {}
+        (error) => {
+          this.errorMessage = "Not Authorized to view this";
+        }
       );
   }
 

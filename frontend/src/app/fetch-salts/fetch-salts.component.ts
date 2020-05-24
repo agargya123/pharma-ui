@@ -7,7 +7,8 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MatDialog, MatDialogRef } from "@angular/material";
+import { MatDialogRef } from "@angular/material";
+import { BlockchainService } from "../services/blockchain.service";
 
 @Component({
   selector: "app-fetch-salts",
@@ -18,14 +19,23 @@ export class FetchSaltsComponent implements OnInit {
   public fetchSaltsForm: FormGroup;
   public rawMaterial: FormArray;
 
+  public returnValue: string;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private blockchainService: BlockchainService,
+    private dialogRef: MatDialogRef<FetchSaltsComponent>
   ) {
+    // supplierId: string,
+    // @Param(yup.object())
+    // rawMaterialSupply: Map<string, number>
     this.fetchSaltsForm = this.fb.group({
-      rawMaterial: this.fb.array([this.createrawMaterial()]),
-      supplierid: new FormControl("", Validators.required),
+      rawMaterialSupply: this.fb.array([this.createrawMaterial()]),
+      supplierId: new FormControl(
+        localStorage.getItem("role") === "supplier"
+          ? localStorage.getItem("username")
+          : "",
+        Validators.required
+      ),
     });
   }
 
@@ -38,18 +48,34 @@ export class FetchSaltsComponent implements OnInit {
     });
   }
   addSalt(): void {
-    this.rawMaterial = this.fetchSaltsForm.get("rawMaterial") as FormArray;
+    this.rawMaterial = this.fetchSaltsForm.get(
+      "rawMaterialSupply"
+    ) as FormArray;
     this.rawMaterial.push(this.createrawMaterial());
   }
   removeSalt(i: number) {
     this.rawMaterial.removeAt(i);
   }
   get saltControls() {
-    return this.fetchSaltsForm.get("rawMaterial")["controls"];
+    return this.fetchSaltsForm.get("rawMaterialSupply")["controls"];
   }
 
   onSubmit() {
-    console.log("Order is placed");
+    // console.log(this.fetchSaltsForm.value);
+    this.blockchainService.fetchSalts(this.fetchSaltsForm.value).subscribe(
+      (data) => {
+        this.returnValue = data;
+        this.closeForm();
+      },
+      (error) => {
+        this.returnValue = error.error.message;
+        this.closeForm();
+      }
+    );
+  }
+
+  closeForm() {
     this.fetchSaltsForm.reset();
+    this.dialogRef.close({ message: this.returnValue });
   }
 }

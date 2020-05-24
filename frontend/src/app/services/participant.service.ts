@@ -4,9 +4,7 @@ import { Observable } from "rxjs";
 import { Supplier } from "../shared/supplier";
 import { Manufacturer } from "../shared/manufacturer";
 import { DrugBatch } from "../shared/drugBatch";
-
-const BLOCKCHAIN_API_END_POINT = "http://localhost:8000";
-const CHAINCODE_NAME = "supplychain";
+import { BLOCKCHAIN_API_END_POINT, CHAINCODE_NAME } from "./env";
 
 @Injectable({
   providedIn: "root",

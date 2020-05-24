@@ -21,16 +21,16 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="supplierid"
+            formControlName="supplierId"
             type="text"
-            name="supplierid"
+            name="supplierId"
             required
             placeholder="Supplier ID"
           />
           <mat-error
             *ngIf="
-              fetchSaltsForm.get('supplierid').hasError('required') &&
-              fetchSaltsForm.get('supplierid').touched
+              fetchSaltsForm.get('supplierId').hasError('required') &&
+              fetchSaltsForm.get('supplierId').touched
             "
           >
             Supplier ID is required
@@ -44,43 +44,40 @@
 
       <section
         class="container border mb-4 p-3"
-        formArrayName="rawMaterial"
+        formArrayName="rawMaterialSupply"
         *ngFor="let salt of saltControls; let i = index"
       >
         <div [formGroupName]="i">
           <div class="row">
             <div class="col-6">
-              <h4>Salt {{ i + 1 }}</h4>
-            </div>
-            <div class="col-6 text-right">
-              <button type="button" mat-stroked-button (click)="removeSalt(i)">
-                Remove
-              </button>
+              <h3>Salt {{ i + 1 }}</h3>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label>Salt Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="salt"
-                  placeholder="Salt Name"
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label>Quantity</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="quantity"
-                  placeholder="0"
-                />
-              </div>
-            </div>
+          <div class="row col-6">
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="salt"
+                type="text"
+                name="salt"
+                required
+                placeholder="Salt ID"
+              />
+            </mat-form-field>
+
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="quantity"
+                type="text"
+                name="quantity"
+                required
+                placeholder="Quantity of Salt"
+              />
+            </mat-form-field>
+            <button type="button" mat-flat-button (click)="removeSalt(i)">
+              Remove
+            </button>
           </div>
         </div>
       </section>

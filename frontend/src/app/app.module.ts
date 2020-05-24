@@ -19,7 +19,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
-import { MatDialogModule,MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { HttpClientModule } from "@angular/common/http";
@@ -30,16 +30,19 @@ import { ExportProductsToPharmacistComponent } from "./export-products-to-pharma
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
 import { TimelineComponent } from "./timeline/timeline.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { MglTimelineModule } from "angular-mgl-timeline";
 import { SaltListComponent } from "./salt-list/salt-list.component";
 import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.component";
 import { MethodService } from "./services/method.service";
 import { ParticipantService } from "./services/participant.service";
-import { GetRawMaterialFromSupplierComponent } from './get-raw-material-from-supplier/get-raw-material-from-supplier.component';
-import { ShipProductsFromManufacturerToDistributorComponent } from './ship-products-from-manufacturer-to-distributor/ship-products-from-manufacturer-to-distributor.component';
-import { ReceiveProductsFromManufacturerByDistributorComponent } from './receive-products-from-manufacturer-by-distributor/receive-products-from-manufacturer-by-distributor.component';
-import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs.component';
+import { GetRawMaterialFromSupplierComponent } from "./get-raw-material-from-supplier/get-raw-material-from-supplier.component";
+import { ShipProductsFromManufacturerToDistributorComponent } from "./ship-products-from-manufacturer-to-distributor/ship-products-from-manufacturer-to-distributor.component";
+import { ReceiveProductsFromManufacturerByDistributorComponent } from "./receive-products-from-manufacturer-by-distributor/receive-products-from-manufacturer-by-distributor.component";
+import { ManufactureDrugsComponent } from "./manufacture-drugs/manufacture-drugs.component";
+import { DashboardWelcomeComponent } from "./dashboard-welcome/dashboard-welcome.component";
+import { BlockchainService } from "./services/blockchain.service";
 
 @NgModule({
   declarations: [
@@ -50,7 +53,7 @@ import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs
     HomeComponent,
     DashboardComponent,
     FetchSaltsComponent,
-   
+
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
     TimelineComponent,
@@ -60,6 +63,7 @@ import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs
     ShipProductsFromManufacturerToDistributorComponent,
     ReceiveProductsFromManufacturerByDistributorComponent,
     ManufactureDrugsComponent,
+    DashboardWelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,10 +90,15 @@ import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs
     MatListModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
-  providers: [LoginService, MethodService, ParticipantService,
-   { provide: MatDialogRef, useValue: {} },
-    ],
+  providers: [
+    LoginService,
+    MethodService,
+    ParticipantService,
+    BlockchainService,
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

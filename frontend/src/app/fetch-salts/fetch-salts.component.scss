@@ -1,49 +1,55 @@
-$color-primary: rgba(67,66,93,255);
+$color-primary: rgba(67, 66, 93, 255);
 $color-text: #43425d;
-$color-text-lite: rgba(#4d4f5c,.5);
+$color-text-lite: rgba(#4d4f5c, 0.5);
 
 .full-width {
-    width: 95%;
-  }
-  
-  .half-width {
-    width: 45%;
-  }
-  .btn-main {
-    background: $color-primary;
-}
-.btn-main-outline {
-  border: 1px solid $color-primary
+  width: 95%;
 }
 
-  
-  .form-size {
-    width: 75%;
-  }
-  
-  form {
-    padding: 30px;
-  }
-  
-  .container {
-    margin: 15px;
-    border: 2px solid;
-    border-radius: 10px;
-  }
-  
-  .message {
-    color: red;
-    padding-left: 30px;
-    padding-bottom: 20px;
-    font-size: large;
-  }
-  
-  .select-text {
-    font-family: monospace;
-    font-weight: bolder;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
+.half-width {
+  width: 45%;
+}
+.btn-main {
+  background: $color-primary;
+}
+.btn-main-outline {
+  border: 1px solid $color-primary;
+}
+
+.form-size {
+  width: 75%;
+}
+
+form {
+  padding: 30px;
+}
+
+.container {
+  margin: 15px;
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+.message {
+  color: red;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  font-size: large;
+}
+
+.select-text {
+  font-family: monospace;
+  font-weight: bolder;
+}
+
+h2 {
+  text-align: center;
+}
+
+.row {
+  padding: 8px;
+}
+
+.col-6 {
+  text-align: center;
+}

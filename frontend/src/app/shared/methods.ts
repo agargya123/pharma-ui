@@ -7,46 +7,60 @@ import { ExportProductsToPharmacistComponent } from "../export-products-to-pharm
 import { BuyProductsFromPharmacistComponent } from "../buy-products-from-pharmacist/buy-products-from-pharmacist.component";
 
 export const METHODS = {
-  supplier: ["fetchSalts"],
+  supplier: [{ function: "fetchSalts", name: "Get/Grow Salts" }],
   manufacturer: [
-    "getRawMaterialFromSupplier",
-    "manufactureDrugs",
-    "shipProductsFromManufacturerToDistributor",
+    {
+      function: "getRawMaterialFromSupplier",
+      name: "Order Raw Material from Supplier",
+    },
+    { function: "manufactureDrugs", name: "Process and Manufacture Drugs" },
+    {
+      function: "shipProductsFromManufacturerToDistributor",
+      name: "Ship Products to Distributor",
+    },
   ],
   distributor: [
-    "receiveProductsFromManufacturerByDistributor",
-    "exportProductsToPharmacist",
+    {
+      function: "receiveProductsFromManufacturerByDistributor",
+      name: "Receive the shipped items",
+    },
+    {
+      function: "exportProductsToPharmacist",
+      name: "Export Products to Pharmacist",
+    },
   ],
-  pharmacist: ["buyProductsFromPharmacist"],
+  pharmacist: [
+    { function: "buyProductsFromPharmacist", name: "Sell to Customer" },
+  ],
 };
 
 export const METHOD_COMPONENT_MAP = [
   {
-    function: METHODS.supplier[0],
+    function: METHODS.supplier[0].function,
     component: FetchSaltsComponent,
   },
   {
-    function: METHODS.manufacturer[0],
+    function: METHODS.manufacturer[0].function,
     component: GetRawMaterialFromSupplierComponent,
   },
   {
-    function: METHODS.manufacturer[1],
+    function: METHODS.manufacturer[1].function,
     component: ManufactureDrugsComponent,
   },
   {
-    function: METHODS.manufacturer[2],
+    function: METHODS.manufacturer[2].function,
     component: ShipProductsFromManufacturerToDistributorComponent,
   },
   {
-    function: METHODS.distributor[0],
+    function: METHODS.distributor[0].function,
     component: ReceiveProductsFromManufacturerByDistributorComponent,
   },
   {
-    function: METHODS.distributor[1],
+    function: METHODS.distributor[1].function,
     component: ExportProductsToPharmacistComponent,
   },
   {
-    function: METHODS.pharmacist[0],
+    function: METHODS.pharmacist[0].function,
     component: BuyProductsFromPharmacistComponent,
   },
 ];
