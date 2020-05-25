@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RegisterComponent } from "./register/register.component";
@@ -31,11 +30,13 @@ import { ManutodistformComponent } from "./manutodistform/manutodistform.compone
 import { ManubyDistFormComponent } from "./manuby-dist-form/manuby-dist-form.component";
 import { ExportProductsToPharmacistComponent } from "./export-products-to-pharmacist/export-products-to-pharmacist.component";
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
-import { TimelineComponent } from "./timeline/timeline.component";
-
+//import { TimelineComponent } from "./timeline/timeline.component";
 import { MglTimelineModule } from "angular-mgl-timeline";
 import { SaltListComponent } from "./salt-list/salt-list.component";
 import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.component";
+import { TimelineComponent } from './timeline/timeline.component';
+import { SearchDrugHistComponent } from './search-drug-hist/search-drug-hist.component';
+
 
 @NgModule({
   declarations: [
@@ -51,9 +52,11 @@ import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.compon
     ManubyDistFormComponent,
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
-    TimelineComponent,
+    //TimelineComponent,
     SaltListComponent,
     DrugBatchListComponent,
+    SearchDrugHistComponent,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,
