@@ -19,16 +19,16 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="manuId"
+            formControlName="manufacturerId"
             type="text"
-            name="manuId"
+            name="manufacturerId"
             required
             placeholder="Manufacturer ID"
           />
           <mat-error
             *ngIf="
-              manutodistForm.get('manuId').hasError('required') &&
-              manutodistForm.get('manuId').touched
+              manutodistForm.get('manufacturerId').hasError('required') &&
+              manutodistForm.get('manufacturerId').touched
             "
           >
             Manufacturer ID is required
@@ -38,16 +38,16 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="distID"
+            formControlName="distributorId"
             type="text"
-            name="distID"
+            name="distributorId"
             required
             placeholder="Distributor ID"
           />
           <mat-error
             *ngIf="
-              manutodistForm.get('distID').hasError('required') &&
-              manutodistForm.get('distID').touched
+              manutodistForm.get('distributorId').hasError('required') &&
+              manutodistForm.get('distributorId').touched
             "
           >
             Distributor ID is required

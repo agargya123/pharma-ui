@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = "bottom";
   openSnackBar(data) {
     console.log(data);
-    this._snackBar.open(data, "OK", {
+    this._snackBar.open(data.message || data, "OK", {
       duration: 2000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,

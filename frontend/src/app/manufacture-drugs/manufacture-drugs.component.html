@@ -19,16 +19,16 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="manufacturerID"
+            formControlName="manufacturerId"
             type="text"
-            name="manufacturerID"
+            name="manufacturerId"
             required
             placeholder="Manufacturer ID"
           />
           <mat-error
             *ngIf="
-              manufacturedrugsForm.get('manufacturerID').hasError('required') &&
-              manufacturedrugsForm.get('manufacturerID').touched
+              manufacturedrugsForm.get('manufacturerId').hasError('required') &&
+              manufacturedrugsForm.get('manufacturerId').touched
             "
           >
             Manufacturer ID is required
@@ -117,7 +117,7 @@
 
       <section
         class="container border mb-4 p-3"
-        formArrayName="rawMaterial"
+        formArrayName="rawMaterialConsumed"
         *ngFor="let salt of saltControls; let i = index"
       >
         <div [formGroupName]="i">

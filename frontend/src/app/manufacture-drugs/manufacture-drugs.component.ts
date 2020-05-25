@@ -7,6 +7,8 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { BlockchainService } from "../services/blockchain.service";
+import { MatDialogRef } from "@angular/material";
 
 @Component({
   selector: "app-manufacture-drugs",
@@ -16,14 +18,27 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class ManufactureDrugsComponent implements OnInit {
   manufacturedrugsForm: FormGroup;
   public rawMaterial: FormArray;
+  public returnValue: string;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private blockchainService: BlockchainService,
+    private dialogRef: MatDialogRef<ManufactureDrugsComponent>,
     private fb: FormBuilder
   ) {
+    //     @Param(yup.string())
+    //     manufacturerId: string,
+    //     @Param(yup.object())
+    //     rawMaterialConsumed: Map<string, number>,
+    //     @Param(yup.string())
+    //     drugName: string,
+    //     @Param(yup.string())
+    //     genericName: string,
+    //     @Param(yup.number())
+    //     productsCreated: number,
+    //     @Param(yup.string())
+    //     expiryDate: string
     this.manufacturedrugsForm = this.fb.group({
-      rawMaterial: this.fb.array([this.createrawMaterial()]),
-      manufacturerID: new FormControl("", Validators.required),
+      rawMaterialConsumed: this.fb.array([this.createrawMaterial()]),
+      manufacturerId: new FormControl("", Validators.required),
       drugName: new FormControl("", Validators.required),
       genericName: new FormControl("", Validators.required),
       productsCreated: new FormControl(0, Validators.required),
@@ -40,7 +55,7 @@ export class ManufactureDrugsComponent implements OnInit {
   }
   addSalt(): void {
     this.rawMaterial = this.manufacturedrugsForm.get(
-      "rawMaterial"
+      "rawMaterialConsumed"
     ) as FormArray;
     this.rawMaterial.push(this.createrawMaterial());
   }
@@ -48,11 +63,26 @@ export class ManufactureDrugsComponent implements OnInit {
     this.rawMaterial.removeAt(i);
   }
   get saltControls() {
-    return this.manufacturedrugsForm.get("rawMaterial")["controls"];
+    return this.manufacturedrugsForm.get("rawMaterialConsumed")["controls"];
   }
   onSubmit() {
-    console.log("Entry is made");
+    // console.log(this.fetchSaltsForm.value);
+    this.blockchainService
+      .manufactureDrugs(this.manufacturedrugsForm.value)
+      .subscribe(
+        (data) => {
+          this.returnValue = data;
+          this.closeForm();
+        },
+        (error) => {
+          this.returnValue = error.error.message;
+          this.closeForm();
+        }
+      );
+  }
+
+  closeForm() {
     this.manufacturedrugsForm.reset();
-    this.router.navigate(["/dashboard"]);
+    this.dialogRef.close({ message: this.returnValue });
   }
 }

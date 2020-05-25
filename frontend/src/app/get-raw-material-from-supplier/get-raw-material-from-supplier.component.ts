@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from "@angular/material";
+import { BlockchainService } from "../services/blockchain.service";
 
 @Component({
   selector: "app-get-raw-material-from-supplier",
@@ -17,16 +18,22 @@ import { MatDialog, MatDialogRef } from "@angular/material";
 export class GetRawMaterialFromSupplierComponent implements OnInit {
   public getRawMaterialForm: FormGroup;
   public rawMaterial: FormArray;
-
+  public returnValue: string;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private blockchainService: BlockchainService,
+    private dialogRef: MatDialogRef<GetRawMaterialFromSupplierComponent>
   ) {
+    //     @Param(yup.string())
+    //     manufacturerId: string,
+    //     @Param(yup.string())
+    //     supplierId: string,
+    //     @Param(yup.object())
+    //     rawMaterialSupply: Map<string, number>
     this.getRawMaterialForm = this.fb.group({
-      rawMaterial: this.fb.array([this.createrawMaterial()]),
-      supplierid: new FormControl("", Validators.required),
-      manufacturerid: new FormControl("", Validators.required),
+      rawMaterialSupply: this.fb.array([this.createrawMaterial()]),
+      supplierId: new FormControl("", Validators.required),
+      manufacturerId: new FormControl("", Validators.required),
     });
   }
 
@@ -39,18 +46,36 @@ export class GetRawMaterialFromSupplierComponent implements OnInit {
     });
   }
   addSalt(): void {
-    this.rawMaterial = this.getRawMaterialForm.get("rawMaterial") as FormArray;
+    this.rawMaterial = this.getRawMaterialForm.get(
+      "rawMaterialSupply"
+    ) as FormArray;
     this.rawMaterial.push(this.createrawMaterial());
   }
   removeSalt(i: number) {
     this.rawMaterial.removeAt(i);
   }
   get saltControls() {
-    return this.getRawMaterialForm.get("rawMaterial")["controls"];
+    return this.getRawMaterialForm.get("rawMaterialSupply")["controls"];
   }
 
   onSubmit() {
-    console.log("Order is placed");
+    // console.log(this.fetchSaltsForm.value);
+    this.blockchainService
+      .getRawMaterialFromSupplier(this.getRawMaterialForm.value)
+      .subscribe(
+        (data) => {
+          this.returnValue = data;
+          this.closeForm();
+        },
+        (error) => {
+          this.returnValue = error.error.message;
+          this.closeForm();
+        }
+      );
+  }
+
+  closeForm() {
     this.getRawMaterialForm.reset();
+    this.dialogRef.close({ message: this.returnValue });
   }
 }

@@ -19,16 +19,16 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="distID"
+            formControlName="distributorId"
             type="text"
-            name="distID"
+            name="distributorId"
             required
-            placeholder="ID"
+            placeholder="Distributor ID"
           />
           <mat-error
             *ngIf="
-              manubyDistForm.get('distID').hasError('required') &&
-              manubyDistForm.get('distID').touched
+              manubyDistForm.get('distributorId').hasError('required') &&
+              manubyDistForm.get('distributorId').touched
             "
           >
             ID is required
