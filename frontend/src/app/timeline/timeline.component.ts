@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, OnChanges } from "@angular/core";
+import { BlockchainService } from "../services/blockchain.service";
 
 @Component({
   selector: "app-timeline",
   templateUrl: "./timeline.component.html",
   styleUrls: ["./timeline.component.scss"],
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements OnChanges {
+  constructor(private blockchainService: BlockchainService) {}
   alternate: boolean = true;
   toggle: boolean = true;
   color: boolean = false;
@@ -14,25 +16,30 @@ export class TimelineComponent implements OnInit {
   contentAnimation: boolean = true;
   dotAnimation: boolean = true;
   side = "left";
+  entries: any;
+  @Input()
+  drugBatchId: string;
 
-  entries = [
-    {
-      header: "Step 1",
-      content: "content",
-    },
-    {
-      header: "Step 2",
-      content: "content",
-    },
-    {
-      header: "Step 3",
-      content: "content",
-    },
-    {
-      header: "Step 4",
-      content: "content",
-    },
-  ];
+  ngOnChanges() {
+    this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
+      (data) => (this.entries = data),
+      (error) => console.log(error)
+    );
+  }
+
+  addEntry() {
+    this.entries.push({
+      stage: "Supplier",
+      organisationName: "MD labs and Chemicals",
+      address: "112, Building 14, Sector 56-C, Noida",
+      licenseNo: "66770F",
+      dateDispatched: "09-05-20",
+    });
+  }
+
+  removeEntry() {
+    this.entries.pop();
+  }
 
   onHeaderClick(event) {
     if (!this.expandEnabled) {
@@ -53,5 +60,4 @@ export class TimelineComponent implements OnInit {
   toggleSide() {
     this.side = this.side === "left" ? "right" : "left";
   }
-  ngOnInit() {}
 }

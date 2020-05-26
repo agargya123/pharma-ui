@@ -143,4 +143,14 @@ export class BlockchainService {
       }
     );
   }
+
+  getDrugBatchHistory(drugBatchId: string): Observable<any> {
+    return this._http.get(
+      BLOCKCHAIN_API_END_POINT +
+        "/" +
+        CHAINCODE_NAME +
+        "/getDrugBatchHistory/" +
+        drugBatchId
+    );
+  }
 }

@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RegisterComponent } from "./register/register.component";
@@ -33,6 +32,9 @@ import { MatExpansionModule } from "@angular/material/expansion";
 
 import { ExportProductsToPharmacistComponent } from "./export-products-to-pharmacist/export-products-to-pharmacist.component";
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
+
+import { SearchDrugHistComponent } from "./search-drug-hist/search-drug-hist.component";
+
 import { TimelineComponent } from "./timeline/timeline.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
@@ -61,9 +63,11 @@ import { BlockchainService } from "./services/blockchain.service";
 
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
-    TimelineComponent,
+    //TimelineComponent,
     SaltListComponent,
     DrugBatchListComponent,
+    SearchDrugHistComponent,
+    TimelineComponent,
     GetRawMaterialFromSupplierComponent,
     ShipProductsFromManufacturerToDistributorComponent,
     ReceiveProductsFromManufacturerByDistributorComponent,
