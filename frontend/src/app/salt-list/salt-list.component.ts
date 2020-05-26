@@ -9,9 +9,14 @@ import { SaltBatch } from "../shared/saltBatch";
   styleUrls: ["./salt-list.component.scss"],
 })
 export class SaltListComponent implements OnInit {
+  isDescriptionVisible: boolean;
   supplier: Supplier;
   listOfRawMaterial: SaltBatch[];
+  
   constructor(private participantService: ParticipantService) {
+
+    this.isDescriptionVisible = true;
+
     participantService
       .getSaltBatchesDetails(
         localStorage.getItem("username"),
@@ -24,6 +29,19 @@ export class SaltListComponent implements OnInit {
         },
         (error) => {}
       );
+  }
+
+
+  toggleDescription() {
+    this.isDescriptionVisible = !this.isDescriptionVisible;
+  }
+
+  setClass() {
+    let classes = {
+      'is-visible': true
+    };
+
+    return classes;
   }
 
   ngOnInit() {}
