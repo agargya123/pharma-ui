@@ -1,3 +1,33 @@
-<p>
-  search-drug-hist works!
-</p>
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxFlex class="text-input">
+    <h1>Search Provenance of the Drug</h1>
+    <form novalidate [formGroup]="drugHistoryForm">
+      <mat-form-field class="input-field">
+        <input
+          matInput
+          type="text"
+          placeholder="Enter Drug Batch ID here"
+          formControlName="drugBatchId"
+          name="drugBatchId"
+        />
+        <mat-error
+          *ngIf="
+            drugHistoryForm.get('drugBatchId').hasError('required') &&
+            drugHistoryForm.get('drugBatchId').touched
+          "
+        >
+          Drug ID is required
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="OnSubmit()">
+        Search
+      </button>
+    </form>
+  </div>
+  <div fxFlex>
+    <app-timeline
+      [drugBatchId]="drugBatchId"
+      *ngIf="drugBatchId"
+    ></app-timeline>
+  </div>
+</div>

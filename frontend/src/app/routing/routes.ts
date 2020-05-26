@@ -14,6 +14,7 @@ import { TimelineComponent } from "../timeline/timeline.component";
 import { SaltListComponent } from "../salt-list/salt-list.component";
 import { DrugBatchListComponent } from "../drug-batch-list/drug-batch-list.component";
 import { DashboardWelcomeComponent } from "../dashboard-welcome/dashboard-welcome.component";
+import { SearchDrugHistComponent } from "../search-drug-hist/search-drug-hist.component";
 export const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
@@ -41,5 +42,6 @@ export const routes: Routes = [
   { path: "exporttopharm", component: ExportProductsToPharmacistComponent },
   { path: "buyfrompharma", component: BuyProductsFromPharmacistComponent },
   { path: "timeline", component: TimelineComponent },
+  { path: "drugHistory", component: SearchDrugHistComponent },
   { path: "", pathMatch: "full", redirectTo: "/home" },
 ];

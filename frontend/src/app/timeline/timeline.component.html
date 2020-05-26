@@ -1,23 +1,37 @@
-
-<mgl-timeline [toggle]="toggle" [alternate]="alternate" [side]="side">
-  <mgl-timeline-entry *ngFor="let entry of entries; let i = index;" (expand)="onExpandEntry($event, i)">
+<mgl-timeline
+  [toggle]="toggle"
+  [alternate]="alternate"
+  [side]="side"
+  *ngIf="entries"
+>
+  <mgl-timeline-entry
+    *ngFor="let entry of entries; let i = index"
+    (expand)="onExpandEntry($event, i)"
+  >
     <mgl-timeline-entry-header (click)="onHeaderClick($event)">
-      <div class="entry">{{entry.stage}}</div>
+      <div class="entry">Format this plz</div>
     </mgl-timeline-entry-header>
-    <mgl-timeline-entry-content [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'" [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
+    <mgl-timeline-entry-content
+      [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
+      [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
+    >
       <div>
-        <div>{{entry.organisationName}}</div>
-        <div>{{entry.address}}</div>
-        <div>{{entry.licenseNo}}</div>
+        <div>{{ entry | json }}</div>
       </div>
     </mgl-timeline-entry-content>
-    <mgl-timeline-entry-dot [class]="color ? 'primary' : 'accent'" 
-                            [size]="size"
-                            (click)="onDotClick($event)"
-                            [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
-                            [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
-                            ></mgl-timeline-entry-dot>
-    <mgl-timeline-entry-side class="date">{{entry.dateDispatched}}</mgl-timeline-entry-side>
+    <mgl-timeline-entry-dot
+      [class]="color ? 'primary' : 'accent'"
+      [size]="size"
+      (click)="onDotClick($event)"
+      [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
+      [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
+    ></mgl-timeline-entry-dot>
+    <mgl-timeline-entry-side class="date">{{
+      entry.dateDispatched
+    }}</mgl-timeline-entry-side>
   </mgl-timeline-entry>
 </mgl-timeline>
 
+<div [hidden]="entries">
+  <mat-spinner></mat-spinner>
+</div>

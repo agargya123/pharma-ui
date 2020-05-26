@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, OnChanges } from "@angular/core";
+import { BlockchainService } from "../services/blockchain.service";
 
 @Component({
   selector: "app-timeline",
   templateUrl: "./timeline.component.html",
   styleUrls: ["./timeline.component.scss"],
 })
-export class TimelineComponent {
+export class TimelineComponent implements OnChanges {
+  constructor(private blockchainService: BlockchainService) {}
   alternate: boolean = true;
   toggle: boolean = true;
   color: boolean = false;
@@ -14,26 +16,16 @@ export class TimelineComponent {
   contentAnimation: boolean = true;
   dotAnimation: boolean = true;
   side = "left";
+  entries: any;
+  @Input()
+  drugBatchId: string;
 
-  entries = [
-    {
-      //does DB have any way to distinguish bw Supplier?Manu. etc
-      stage: "Supplier",
-      organisationName: "MD labs and Chemicals",
-      address: "112, Building 14, Sector 56-C, Noida",
-      licenseNo: "66770F",
-      dateDispatched: "09-05-20",
-      //dateRecieved?
-    },
-
-    {
-      stage: "Manufacturer",
-      organisationName: "Ranbaxy Pharmaceuticals Pvt. Ltd.",
-      address: "Building 23, Raheja Medical Complex, Manesar",
-      licenseNo: "FFR2783",
-      dateDispatched: "11-05-20",
-    },
-  ];
+  ngOnChanges() {
+    this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
+      (data) => (this.entries = data),
+      (error) => console.log(error)
+    );
+  }
 
   addEntry() {
     this.entries.push({
