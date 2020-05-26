@@ -13,7 +13,7 @@
     <form
       fxFlex="50"
       novalidate
-      [formGroup]="fetchSaltsForm"
+      [formGroup]="getRawMaterialForm"
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
@@ -29,11 +29,29 @@
           />
           <mat-error
             *ngIf="
-              fetchSaltsForm.get('supplierId').hasError('required') &&
-              fetchSaltsForm.get('supplierId').touched
+              getRawMaterialForm.get('supplierId').hasError('required') &&
+              getRawMaterialForm.get('supplierId').touched
             "
           >
             Supplier ID is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="manufacturerId"
+            type="text"
+            name="manufacturerId"
+            required
+            placeholder="Manufacturer ID"
+          />
+          <mat-error
+            *ngIf="
+              getRawMaterialForm.get('manufacturerId').hasError('required') &&
+              getRawMaterialForm.get('manufacturerId').touched
+            "
+          >
+            Manufacturer ID is required
           </mat-error>
         </mat-form-field>
         <br />
@@ -83,7 +101,11 @@
       </section>
 
       <br />
-      <button mat-flat-button [disabled]="fetchSaltsForm.invalid" type="submit">
+      <button
+        mat-flat-button
+        [disabled]="getRawMaterialForm.invalid"
+        type="submit"
+      >
         Submit
       </button>
       <!--<mat-dialog-actions>

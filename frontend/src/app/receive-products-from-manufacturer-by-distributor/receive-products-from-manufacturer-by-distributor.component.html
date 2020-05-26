@@ -15,55 +15,53 @@
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
-      
       <p>
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="distID"
+            formControlName="distributorId"
             type="text"
-            name="distID"
+            name="distributorId"
             required
-            placeholder="ID"
+            placeholder="Distributor ID"
           />
           <mat-error
             *ngIf="
-            manubyDistForm.get('distID').hasError('required') &&
-            manubyDistForm.get('distID').touched
+              manubyDistForm.get('distributorId').hasError('required') &&
+              manubyDistForm.get('distributorId').touched
             "
           >
             ID is required
           </mat-error>
         </mat-form-field>
- 
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="shippingID"
-          type="number"
-          name="shippingID"
-          required
-          placeholder="Shipping ID"
-        />
-        <mat-error
-          *ngIf="
-          manubyDistForm.get('shippingID').hasError('required') &&
-          manubyDistForm.get('shippingID').touched
-          "
-        >
-          Shipping ID is required
-        </mat-error>
-      </mat-form-field>
 
+        <mat-form-field
+          ><input
+            matInput
+            formControlName="shippingID"
+            type="text"
+            name="shippingID"
+            required
+            placeholder="Shipping ID"
+          />
+          <mat-error
+            *ngIf="
+              manubyDistForm.get('shippingID').hasError('required') &&
+              manubyDistForm.get('shippingID').touched
+            "
+          >
+            Shipping ID is required
+          </mat-error>
+        </mat-form-field>
       </p>
-    
+
       <br />
       <button mat-flat-button [disabled]="manubyDistForm.invalid" type="submit">
         Submit
       </button>
     </form>
   </div>
-  <div fxFlex>
+  <!-- <div fxFlex>
     <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
-  </div>
+  </div> -->
 </div>

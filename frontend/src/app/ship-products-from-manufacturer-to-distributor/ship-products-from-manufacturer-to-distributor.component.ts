@@ -5,16 +5,22 @@ import { BlockchainService } from "../services/blockchain.service";
 import { MatDialogRef } from "@angular/material";
 
 @Component({
-  selector: "app-buy-products-from-pharmacist",
-  templateUrl: "./buy-products-from-pharmacist.component.html",
-  styleUrls: ["./buy-products-from-pharmacist.component.scss"],
+  selector: "app-ship-products-from-manufacturer-to-distributor",
+  templateUrl:
+    "./ship-products-from-manufacturer-to-distributor.component.html",
+  styleUrls: [
+    "./ship-products-from-manufacturer-to-distributor.component.scss",
+  ],
 })
-export class BuyProductsFromPharmacistComponent implements OnInit {
-  buyfromPharma: FormGroup;
-  returnValue: string;
+export class ShipProductsFromManufacturerToDistributorComponent
+  implements OnInit {
+  manutodistForm: FormGroup;
+  public returnValue: string;
   constructor(
     private blockchainService: BlockchainService,
-    private dialogRef: MatDialogRef<BuyProductsFromPharmacistComponent>
+    private dialogRef: MatDialogRef<
+      ShipProductsFromManufacturerToDistributorComponent
+    >
   ) {
     this.createForm();
   }
@@ -22,27 +28,24 @@ export class BuyProductsFromPharmacistComponent implements OnInit {
   ngOnInit() {}
   createForm() {
     //     @Param(yup.string())
-    //     pharmacistId: string,
+    //     manufacturerId: string,
+    //     @Param(yup.string())
+    //     distributorId: string,
     //     @Param(yup.string())
     //     drugName: string,
-    //     @Param(yup.number())
-    //     boughtProducts: number,
     //     @Param(yup.string())
-    //     customerID: string,
-    //     @Param(yup.string())
-    //     invoiceNumber: string
-    this.buyfromPharma = new FormGroup({
-      pharmacistId: new FormControl("", Validators.required),
+    //     shippingID: string
+    this.manutodistForm = new FormGroup({
+      manufacturerId: new FormControl("", Validators.required),
+      distributorId: new FormControl("", Validators.required),
       drugName: new FormControl("", Validators.required),
-      boughtProducts: new FormControl(0, Validators.required),
-      customerID: new FormControl("", Validators.required),
-      invoiceNumber: new FormControl("", Validators.required),
+      shippingID: new FormControl("", Validators.required),
     });
   }
   onSubmit() {
     // console.log(this.fetchSaltsForm.value);
     this.blockchainService
-      .buyProductsFromPharmacist(this.buyfromPharma.value)
+      .shipProductsFromManufacturerToDistributor(this.manutodistForm.value)
       .subscribe(
         (data) => {
           this.returnValue = data;
@@ -56,7 +59,7 @@ export class BuyProductsFromPharmacistComponent implements OnInit {
   }
 
   closeForm() {
-    this.buyfromPharma.reset();
+    this.manutodistForm.reset();
     this.dialogRef.close({ message: this.returnValue });
   }
 }

@@ -15,106 +15,157 @@
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
-      
       <p>
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="manufacturerID"
+            formControlName="manufacturerId"
             type="text"
-            name="manufacturerID"
+            name="manufacturerId"
             required
             placeholder="Manufacturer ID"
           />
           <mat-error
             *ngIf="
-            manufacturedrugsForm.get('manufacturerID').hasError('required') &&
-            manufacturedrugsForm.get('manufacturerID').touched
+              manufacturedrugsForm.get('manufacturerId').hasError('required') &&
+              manufacturedrugsForm.get('manufacturerId').touched
             "
           >
-          Manufacturer ID is required
+            Manufacturer ID is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="drugName"
-          type="text"
-          name="drugName"
-          required
-          placeholder="Drug Name"
-        />
-        <mat-error
-          *ngIf="
-          manufacturedrugsForm.get('drugName').hasError('required') &&
-          manufacturedrugsForm.get('drugName').touched
-          "
-        >
-          Drug Name is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field 
-      ><input
-        matInput
-        formControlName="genericName"
-        type="text"
-        name="genericName"
-        required
-        placeholder="Generic Name"
-      />
-      <mat-error
-        *ngIf="
-        manufacturedrugsForm.get('genericName').hasError('required') &&
-        manufacturedrugsForm.get('genericName').touched
-        "
-      >
-        Generic Name
-      </mat-error>
-    </mat-form-field>
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="productsCreated"
-          type="number"
-          name="productsCreated"
-          required
-          placeholder="Number of products"
-        />
-        <mat-error
-          *ngIf="
-          manufacturedrugsForm.get('productsCreated').hasError('required') &&
-          manufacturedrugsForm.get('productsCreated').touched
-          "
-        >
-         Number of products is required
-        </mat-error>
-      </mat-form-field>
- <br/>
-        <mat-form-field 
-        > <input matInput [matDatepicker]="myDatepicker"  placeholder="Expiry Date" 
-        formControlName="expiryDate">
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker #myDatepicker></mat-datepicker>
-        <mat-error
-      *ngIf="
-      manufacturedrugsForm.get('expiryDate').hasError('required') &&
-      manufacturedrugsForm.get('expiryDate').touched
-      "
-    >
-     Expiry Date is required
-    </mat-error>
-        
-      </mat-form-field>
-
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="drugName"
+            type="text"
+            name="drugName"
+            required
+            placeholder="Drug Name"
+          />
+          <mat-error
+            *ngIf="
+              manufacturedrugsForm.get('drugName').hasError('required') &&
+              manufacturedrugsForm.get('drugName').touched
+            "
+          >
+            Drug Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="genericName"
+            type="text"
+            name="genericName"
+            required
+            placeholder="Generic Name"
+          />
+          <mat-error
+            *ngIf="
+              manufacturedrugsForm.get('genericName').hasError('required') &&
+              manufacturedrugsForm.get('genericName').touched
+            "
+          >
+            Generic Name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="productsCreated"
+            type="number"
+            name="productsCreated"
+            required
+            placeholder="Number of products"
+          />
+          <mat-error
+            *ngIf="
+              manufacturedrugsForm
+                .get('productsCreated')
+                .hasError('required') &&
+              manufacturedrugsForm.get('productsCreated').touched
+            "
+          >
+            Number of products is required
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="padding-right: 14px;">
+          <input
+            matInput
+            [matDatepicker]="myDatepicker"
+            placeholder="Expiry Date"
+            formControlName="expiryDate"
+          />
+          <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              manufacturedrugsForm.get('expiryDate').hasError('required') &&
+              manufacturedrugsForm.get('expiryDate').touched
+            "
+          >
+            Expiry Date is required
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button type="button" mat-stroked-button (click)="addSalt()">
+          Add Raw Material
+        </button>
       </p>
-    
+
+      <section
+        class="container border mb-4 p-3"
+        formArrayName="rawMaterialConsumed"
+        *ngFor="let salt of saltControls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div class="row">
+            <div class="col-6">
+              <h3>Salt {{ i + 1 }}</h3>
+            </div>
+          </div>
+          <div class="row col-6">
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="salt"
+                type="text"
+                name="salt"
+                required
+                placeholder="Salt ID"
+              />
+            </mat-form-field>
+
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="quantity"
+                type="text"
+                name="quantity"
+                required
+                placeholder="Quantity of Salt"
+              />
+            </mat-form-field>
+            <button type="button" mat-flat-button (click)="removeSalt(i)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </section>
+
       <br />
-      <button mat-flat-button [disabled]="manufacturedrugsForm.invalid" type="submit">
+      <button
+        mat-flat-button
+        [disabled]="manufacturedrugsForm.invalid"
+        type="submit"
+      >
         Submit
       </button>
     </form>
   </div>
-  <div fxFlex>
+  <!-- <div fxFlex>
     <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
-  </div>
+  </div> -->
 </div>

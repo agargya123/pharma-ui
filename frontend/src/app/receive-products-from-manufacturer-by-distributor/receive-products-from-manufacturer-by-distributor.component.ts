@@ -5,16 +5,22 @@ import { BlockchainService } from "../services/blockchain.service";
 import { MatDialogRef } from "@angular/material";
 
 @Component({
-  selector: "app-export-products-to-pharmacist",
-  templateUrl: "./export-products-to-pharmacist.component.html",
-  styleUrls: ["./export-products-to-pharmacist.component.scss"],
+  selector: "app-receive-products-from-manufacturer-by-distributor",
+  templateUrl:
+    "./receive-products-from-manufacturer-by-distributor.component.html",
+  styleUrls: [
+    "./receive-products-from-manufacturer-by-distributor.component.scss",
+  ],
 })
-export class ExportProductsToPharmacistComponent implements OnInit {
-  exportToPharma: FormGroup;
+export class ReceiveProductsFromManufacturerByDistributorComponent
+  implements OnInit {
+  manubyDistForm: FormGroup;
   public returnValue: string;
   constructor(
     private blockchainService: BlockchainService,
-    private dialogRef: MatDialogRef<ExportProductsToPharmacistComponent>
+    private dialogRef: MatDialogRef<
+      ReceiveProductsFromManufacturerByDistributorComponent
+    >
   ) {
     this.createForm();
   }
@@ -22,21 +28,18 @@ export class ExportProductsToPharmacistComponent implements OnInit {
   ngOnInit() {}
   createForm() {
     //     @Param(yup.string())
-    //     pharmacistID: string,
-    //     @Param(yup.string())
     //     distributorId: string,
     //     @Param(yup.string())
-    //     batchId: string
-    this.exportToPharma = new FormGroup({
-      pharmacistID: new FormControl("", Validators.required),
+    //     shippingID: string
+    this.manubyDistForm = new FormGroup({
       distributorId: new FormControl("", Validators.required),
-      batchId: new FormControl("", Validators.required),
+      shippingID: new FormControl("", Validators.required),
     });
   }
   onSubmit() {
     // console.log(this.fetchSaltsForm.value);
     this.blockchainService
-      .exportProductsToPharmacist(this.exportToPharma.value)
+      .receiveProductsFromManufacturerByDistributor(this.manubyDistForm.value)
       .subscribe(
         (data) => {
           this.returnValue = data;
@@ -50,7 +53,7 @@ export class ExportProductsToPharmacistComponent implements OnInit {
   }
 
   closeForm() {
-    this.exportToPharma.reset();
+    this.manubyDistForm.reset();
     this.dialogRef.close({ message: this.returnValue });
   }
 }

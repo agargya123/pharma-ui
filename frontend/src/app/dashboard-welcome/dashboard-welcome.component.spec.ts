@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManutodistformComponent } from './manutodistform.component';
+import { DashboardWelcomeComponent } from './dashboard-welcome.component';
 
-describe('ManutodistformComponent', () => {
-  let component: ManutodistformComponent;
-  let fixture: ComponentFixture<ManutodistformComponent>;
+describe('DashboardWelcomeComponent', () => {
+  let component: DashboardWelcomeComponent;
+  let fixture: ComponentFixture<DashboardWelcomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManutodistformComponent ]
+      declarations: [ DashboardWelcomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManutodistformComponent);
+    fixture = TestBed.createComponent(DashboardWelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

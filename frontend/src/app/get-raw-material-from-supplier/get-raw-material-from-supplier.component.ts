@@ -7,46 +7,38 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { MatDialog, MatDialogRef } from "@angular/material";
 import { BlockchainService } from "../services/blockchain.service";
-import { MatDialogRef } from "@angular/material";
 
 @Component({
-  selector: "app-manufacture-drugs",
-  templateUrl: "./manufacture-drugs.component.html",
-  styleUrls: ["./manufacture-drugs.component.scss"],
+  selector: "app-get-raw-material-from-supplier",
+  templateUrl: "./get-raw-material-from-supplier.component.html",
+  styleUrls: ["./get-raw-material-from-supplier.component.scss"],
 })
-export class ManufactureDrugsComponent implements OnInit {
-  manufacturedrugsForm: FormGroup;
+export class GetRawMaterialFromSupplierComponent implements OnInit {
+  public getRawMaterialForm: FormGroup;
   public rawMaterial: FormArray;
   public returnValue: string;
   constructor(
+    private fb: FormBuilder,
     private blockchainService: BlockchainService,
-    private dialogRef: MatDialogRef<ManufactureDrugsComponent>,
-    private fb: FormBuilder
+    private dialogRef: MatDialogRef<GetRawMaterialFromSupplierComponent>
   ) {
     //     @Param(yup.string())
     //     manufacturerId: string,
+    //     @Param(yup.string())
+    //     supplierId: string,
     //     @Param(yup.object())
-    //     rawMaterialConsumed: Map<string, number>,
-    //     @Param(yup.string())
-    //     drugName: string,
-    //     @Param(yup.string())
-    //     genericName: string,
-    //     @Param(yup.number())
-    //     productsCreated: number,
-    //     @Param(yup.string())
-    //     expiryDate: string
-    this.manufacturedrugsForm = this.fb.group({
-      rawMaterialConsumed: this.fb.array([this.createrawMaterial()]),
+    //     rawMaterialSupply: Map<string, number>
+    this.getRawMaterialForm = this.fb.group({
+      rawMaterialSupply: this.fb.array([this.createrawMaterial()]),
+      supplierId: new FormControl("", Validators.required),
       manufacturerId: new FormControl("", Validators.required),
-      drugName: new FormControl("", Validators.required),
-      genericName: new FormControl("", Validators.required),
-      productsCreated: new FormControl(0, Validators.required),
-      expiryDate: new FormControl("", Validators.required),
     });
   }
 
   ngOnInit() {}
+
   createrawMaterial(): FormGroup {
     return this.fb.group({
       salt: "",
@@ -54,8 +46,8 @@ export class ManufactureDrugsComponent implements OnInit {
     });
   }
   addSalt(): void {
-    this.rawMaterial = this.manufacturedrugsForm.get(
-      "rawMaterialConsumed"
+    this.rawMaterial = this.getRawMaterialForm.get(
+      "rawMaterialSupply"
     ) as FormArray;
     this.rawMaterial.push(this.createrawMaterial());
   }
@@ -63,12 +55,13 @@ export class ManufactureDrugsComponent implements OnInit {
     this.rawMaterial.removeAt(i);
   }
   get saltControls() {
-    return this.manufacturedrugsForm.get("rawMaterialConsumed")["controls"];
+    return this.getRawMaterialForm.get("rawMaterialSupply")["controls"];
   }
+
   onSubmit() {
     // console.log(this.fetchSaltsForm.value);
     this.blockchainService
-      .manufactureDrugs(this.manufacturedrugsForm.value)
+      .getRawMaterialFromSupplier(this.getRawMaterialForm.value)
       .subscribe(
         (data) => {
           this.returnValue = data;
@@ -82,7 +75,7 @@ export class ManufactureDrugsComponent implements OnInit {
   }
 
   closeForm() {
-    this.manufacturedrugsForm.reset();
+    this.getRawMaterialForm.reset();
     this.dialogRef.close({ message: this.returnValue });
   }
 }

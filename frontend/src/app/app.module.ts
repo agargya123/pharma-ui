@@ -18,25 +18,33 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginService } from "./services/login.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { FetchSaltsComponent } from "./fetch-salts/fetch-salts.component";
-import { ManufactureDrugsComponent } from "./manufacture-drugs/manufacture-drugs.component";
-import { ManutodistformComponent } from "./manutodistform/manutodistform.component";
-import { ManubyDistFormComponent } from "./manuby-dist-form/manuby-dist-form.component";
 import { ExportProductsToPharmacistComponent } from "./export-products-to-pharmacist/export-products-to-pharmacist.component";
 import { BuyProductsFromPharmacistComponent } from "./buy-products-from-pharmacist/buy-products-from-pharmacist.component";
-//import { TimelineComponent } from "./timeline/timeline.component";
+
+import { SearchDrugHistComponent } from "./search-drug-hist/search-drug-hist.component";
+
+import { TimelineComponent } from "./timeline/timeline.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+
 import { MglTimelineModule } from "angular-mgl-timeline";
 import { SaltListComponent } from "./salt-list/salt-list.component";
 import { DrugBatchListComponent } from "./drug-batch-list/drug-batch-list.component";
-import { TimelineComponent } from './timeline/timeline.component';
-import { SearchDrugHistComponent } from './search-drug-hist/search-drug-hist.component';
-
+import { MethodService } from "./services/method.service";
+import { ParticipantService } from "./services/participant.service";
+import { GetRawMaterialFromSupplierComponent } from "./get-raw-material-from-supplier/get-raw-material-from-supplier.component";
+import { ShipProductsFromManufacturerToDistributorComponent } from "./ship-products-from-manufacturer-to-distributor/ship-products-from-manufacturer-to-distributor.component";
+import { ReceiveProductsFromManufacturerByDistributorComponent } from "./receive-products-from-manufacturer-by-distributor/receive-products-from-manufacturer-by-distributor.component";
+import { ManufactureDrugsComponent } from "./manufacture-drugs/manufacture-drugs.component";
+import { DashboardWelcomeComponent } from "./dashboard-welcome/dashboard-welcome.component";
+import { BlockchainService } from "./services/blockchain.service";
 
 @NgModule({
   declarations: [
@@ -47,9 +55,7 @@ import { SearchDrugHistComponent } from './search-drug-hist/search-drug-hist.com
     HomeComponent,
     DashboardComponent,
     FetchSaltsComponent,
-    ManufactureDrugsComponent,
-    ManutodistformComponent,
-    ManubyDistFormComponent,
+
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
     //TimelineComponent,
@@ -57,6 +63,11 @@ import { SearchDrugHistComponent } from './search-drug-hist/search-drug-hist.com
     DrugBatchListComponent,
     SearchDrugHistComponent,
     TimelineComponent,
+    GetRawMaterialFromSupplierComponent,
+    ShipProductsFromManufacturerToDistributorComponent,
+    ReceiveProductsFromManufacturerByDistributorComponent,
+    ManufactureDrugsComponent,
+    DashboardWelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,8 +93,16 @@ import { SearchDrugHistComponent } from './search-drug-hist/search-drug-hist.com
     MglTimelineModule,
     MatListModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    MethodService,
+    ParticipantService,
+    BlockchainService,
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

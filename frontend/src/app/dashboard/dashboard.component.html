@@ -27,8 +27,13 @@
           Transactions
         </button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
-          <button mat-menu-item>Fetch Salts</button>
-          <button mat-menu-item>Ship Products</button>
+          <button
+            mat-menu-item
+            *ngFor="let method of methods"
+            (click)="openDialogForm(method)"
+          >
+            {{ method.name }}
+          </button>
         </mat-menu>
       </mat-card-content>
     </mat-card>

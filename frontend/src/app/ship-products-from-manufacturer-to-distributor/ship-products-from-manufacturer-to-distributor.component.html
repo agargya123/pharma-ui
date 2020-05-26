@@ -11,7 +11,7 @@
     <form
       fxFlex="50"
       novalidate
-      [formGroup]="exportToPharma"
+      [formGroup]="manutodistForm"
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
@@ -19,19 +19,19 @@
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="pharmacistID"
+            formControlName="manufacturerId"
             type="text"
-            name="pharmacistID"
+            name="manufacturerId"
             required
-            placeholder="Pharma ID"
+            placeholder="Manufacturer ID"
           />
           <mat-error
             *ngIf="
-              exportToPharma.get('pharmacistID').hasError('required') &&
-              exportToPharma.get('pharmacistID').touched
+              manutodistForm.get('manufacturerId').hasError('required') &&
+              manutodistForm.get('manufacturerId').touched
             "
           >
-            Pharmacist ID is required
+            Manufacturer ID is required
           </mat-error>
         </mat-form-field>
 
@@ -46,36 +46,53 @@
           />
           <mat-error
             *ngIf="
-              exportToPharma.get('distributorId').hasError('required') &&
-              exportToPharma.get('distributorId').touched
+              manutodistForm.get('distributorId').hasError('required') &&
+              manutodistForm.get('distributorId').touched
             "
           >
             Distributor ID is required
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field
+        <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="batchId"
+            formControlName="drugName"
             type="text"
-            name="batchId"
+            name="drugName"
             required
-            placeholder="Batch ID"
+            placeholder="Drug Name"
           />
           <mat-error
             *ngIf="
-              exportToPharma.get('batchId').hasError('required') &&
-              exportToPharma.get('batchId').touched
+              manutodistForm.get('drugName').hasError('required') &&
+              manutodistForm.get('drugName').touched
             "
           >
-            Batch ID is required
+            Drug Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="shippingID"
+            type="text"
+            name="shippingID"
+            required
+            placeholder="Shipping ID"
+          />
+          <mat-error
+            *ngIf="
+              manutodistForm.get('shippingID').hasError('required') &&
+              manutodistForm.get('shippingID').touched
+            "
+          >
+            Shipping ID is required
           </mat-error>
         </mat-form-field>
       </p>
 
       <br />
-      <button mat-flat-button [disabled]="exportToPharma.invalid" type="submit">
+      <button mat-flat-button [disabled]="manutodistForm.invalid" type="submit">
         Submit
       </button>
     </form>
