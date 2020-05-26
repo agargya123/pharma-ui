@@ -1,5 +1,4 @@
-<a mat-button (click)="openFetchSatsForm()"><span class="fa fa-sign-in fa-lg"></span> <h2>Fetch Salts</h2></a>
-    <button mat-button mat-dialog-close><h2>&times;</h2></button>
+<!--<button mat-button mat-dialog-close><h2>&times;</h2></button>-->
 <div
   fxLayout="row"
   fxLayout.lt-md="column"
@@ -8,10 +7,9 @@
   fxLayoutAlign="center center"
   class="container"
 >
-
+  <!---- <mat-dialog-content>-->
   <div fxFlex><h2>Product Details</h2></div>
   <div fxFlex>
-
     <form
       fxFlex="50"
       novalidate
@@ -19,77 +17,82 @@
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
-    <mat-dialog-content>
       <p>
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="supplierid"
+            formControlName="supplierId"
             type="text"
-            name="supplierid"
+            name="supplierId"
             required
             placeholder="Supplier ID"
           />
           <mat-error
             *ngIf="
-            fetchSaltsForm.get('supplierid').hasError('required') &&
-            fetchSaltsForm.get('supplierid').touched
+              fetchSaltsForm.get('supplierId').hasError('required') &&
+              fetchSaltsForm.get('supplierId').touched
             "
           >
-           Supplier ID is required
+            Supplier ID is required
           </mat-error>
         </mat-form-field>
- 
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="salts"
-          type="text"
-          name="salts"
-          required
-          placeholder="Salts"
-        />
-        <mat-error
-          *ngIf="
-          fetchSaltsForm.get('salts').hasError('required') &&
-          fetchSaltsForm.get('salts').touched
-          "
-        >
-          Salts are required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field 
-        ><input
-          matInput
-          formControlName="quantity"
-          type="number"
-          name="quantity"
-          required
-          placeholder="Quantity"
-        />
-        <mat-error
-          *ngIf="
-          fetchSaltsForm.get('quantity').hasError('required') &&
-          fetchSaltsForm.get('quantity').touched
-          "
-        >
-         Quantity is required
-        </mat-error>
-      </mat-form-field>
-
+        <br />
+        <button type="button" mat-stroked-button (click)="addSalt()">
+          Add Raw Material
+        </button>
       </p>
-    </mat-dialog-content>
+
+      <section
+        class="container border mb-4 p-3"
+        formArrayName="rawMaterialSupply"
+        *ngFor="let salt of saltControls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div class="row">
+            <div class="col-6">
+              <h3>Salt {{ i + 1 }}</h3>
+            </div>
+          </div>
+          <div class="row col-6">
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="salt"
+                type="text"
+                name="salt"
+                required
+                placeholder="Salt ID"
+              />
+            </mat-form-field>
+
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="quantity"
+                type="text"
+                name="quantity"
+                required
+                placeholder="Quantity of Salt"
+              />
+            </mat-form-field>
+            <button type="button" mat-flat-button (click)="removeSalt(i)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </section>
+
       <br />
       <button mat-flat-button [disabled]="fetchSaltsForm.invalid" type="submit">
         Submit
       </button>
-      <mat-dialog-actions>
-        <button mat-button mat-dialog-close>Cancel</button>
-      </mat-dialog-actions>
-    
+      <!--<mat-dialog-actions>
+          <button mat-button mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>-->
     </form>
-  <div fxFlex>
-    <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+    <!-- <div fxFlex>
+      <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+    </div> -->
   </div>
-</div>
+  <!--</mat-dialog-content>-->
 </div>

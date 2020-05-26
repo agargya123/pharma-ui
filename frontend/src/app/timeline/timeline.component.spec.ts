@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManubyDistFormComponent } from './manuby-dist-form.component';
+import { TimelineComponent } from './timeline.component';
 
-describe('ManubyDistFormComponent', () => {
-  let component: ManubyDistFormComponent;
-  let fixture: ComponentFixture<ManubyDistFormComponent>;
+describe('TimelineComponent', () => {
+  let component: TimelineComponent;
+  let fixture: ComponentFixture<TimelineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManubyDistFormComponent ]
+      declarations: [ TimelineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManubyDistFormComponent);
+    fixture = TestBed.createComponent(TimelineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

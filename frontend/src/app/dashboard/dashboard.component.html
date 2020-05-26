@@ -1,7 +1,45 @@
-<div fxLayout="column" fxLayoutGap="20px" class="container">
-  <div fxFlex>
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxFlex class="container">
     <mat-card>
       <mat-card-title>Hello {{ username | uppercase }}</mat-card-title>
     </mat-card>
+  </div>
+
+  <div fxFlex class="menu-container">
+    <mat-card class="menu-card" color="accent"
+      ><mat-card-content>
+        <button mat-stroked-button class="mat-button-class" routerLink="salts">
+          Salts
+        </button>
+        <button
+          mat-stroked-button
+          class="mat-button-class"
+          routerLink="drug-batch"
+        >
+          Drug Batch Available
+        </button>
+
+        <button
+          mat-stroked-button
+          class="mat-button-class"
+          [matMenuTriggerFor]="belowMenu"
+        >
+          Transactions
+        </button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button
+            mat-menu-item
+            *ngFor="let method of methods"
+            (click)="openDialogForm(method)"
+          >
+            {{ method.name }}
+          </button>
+        </mat-menu>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex class="bottom-container">
+    <router-outlet></router-outlet>
   </div>
 </div>

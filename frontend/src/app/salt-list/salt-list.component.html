@@ -1,0 +1,35 @@
+<div>
+  <h2>Salts Available</h2>
+  <mat-accordion class="example-headers-align" multi *ngIf="listOfRawMaterial">
+    <mat-expansion-panel
+      *ngFor="let rawMaterial of listOfRawMaterial; let i = index" (click)="toggleDescription()"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h4>{{ i + 1 }}. {{ rawMaterial.salt.name | uppercase }}</h4>
+        </mat-panel-title>
+        <mat-panel-description *ngIf = "this.isDescriptionVisible">
+          Click to view Details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-list>
+        <mat-list-item class="key-value-pair">
+            <span class="key">Amount : </span>
+            <span class="value">{{ rawMaterial.amount }}</span>
+        </mat-list-item>
+        <mat-list-item class="key-value-pair">
+          <span class="key">Supplier : </span>
+          <span class="value">{{ rawMaterial.supplierId }}</span>
+      </mat-list-item>
+      <mat-list-item class="key-value-pair">
+        <span class="key">Time : </span>
+        <span class="value">{{ rawMaterial.soldToManufDate | date:'dd/MM/yyyy' }}</span>
+    </mat-list-item>
+  </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div [hidden]="listOfRawMaterial">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</div>

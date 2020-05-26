@@ -1,0 +1,120 @@
+<!--<button mat-button mat-dialog-close><h2>&times;</h2></button>-->
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="20px"
+  fxLayoutGap.lt-md="0px"
+  fxLayoutAlign="center center"
+  class="container"
+>
+  <!---- <mat-dialog-content>-->
+  <div fxFlex><h2>Product Details</h2></div>
+  <div fxFlex>
+    <form
+      fxFlex="50"
+      novalidate
+      [formGroup]="getRawMaterialForm"
+      (ngSubmit)="onSubmit()"
+      class="form-size"
+    >
+      <p>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="supplierId"
+            type="text"
+            name="supplierId"
+            required
+            placeholder="Supplier ID"
+          />
+          <mat-error
+            *ngIf="
+              getRawMaterialForm.get('supplierId').hasError('required') &&
+              getRawMaterialForm.get('supplierId').touched
+            "
+          >
+            Supplier ID is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="manufacturerId"
+            type="text"
+            name="manufacturerId"
+            required
+            placeholder="Manufacturer ID"
+          />
+          <mat-error
+            *ngIf="
+              getRawMaterialForm.get('manufacturerId').hasError('required') &&
+              getRawMaterialForm.get('manufacturerId').touched
+            "
+          >
+            Manufacturer ID is required
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button type="button" mat-stroked-button (click)="addSalt()">
+          Add Raw Material
+        </button>
+      </p>
+
+      <section
+        class="container border mb-4 p-3"
+        formArrayName="rawMaterialSupply"
+        *ngFor="let salt of saltControls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div class="row">
+            <div class="col-6">
+              <h3>Salt {{ i + 1 }}</h3>
+            </div>
+          </div>
+          <div class="row col-6">
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="salt"
+                type="text"
+                name="salt"
+                required
+                placeholder="Salt ID"
+              />
+            </mat-form-field>
+
+            <mat-form-field style="padding-right: 14px;"
+              ><input
+                matInput
+                formControlName="quantity"
+                type="text"
+                name="quantity"
+                required
+                placeholder="Quantity of Salt"
+              />
+            </mat-form-field>
+            <button type="button" mat-flat-button (click)="removeSalt(i)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <br />
+      <button
+        mat-flat-button
+        [disabled]="getRawMaterialForm.invalid"
+        type="submit"
+      >
+        Submit
+      </button>
+      <!--<mat-dialog-actions>
+          <button mat-button mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>-->
+    </form>
+    <!-- <div fxFlex>
+      <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
+    </div> -->
+  </div>
+  <!--</mat-dialog-content>-->
+</div>

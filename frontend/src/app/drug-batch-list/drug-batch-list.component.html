@@ -1,0 +1,27 @@
+<div>
+  <h2>Drug Batch Available</h2>
+  <mat-accordion class="example-headers-align" multi *ngIf="listOfDrugBatch">
+    <mat-expansion-panel
+      *ngFor="let drugBatch of listOfDrugBatch; let i = index"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h4>
+            {{ i + 1 }}. {{ drugBatch._genericName }} | ID: {{ drugBatch._id }}
+          </h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to view Details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <pre>{{ drugBatch | json }}</pre>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div [hidden]="listOfDrugBatch || errorMessage">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+  <div *ngIf="errorMessage" [style.textAlign]="'center'" [style.color]="'grey'">
+    <h3>{{ errorMessage }}</h3>
+  </div>
+</div>

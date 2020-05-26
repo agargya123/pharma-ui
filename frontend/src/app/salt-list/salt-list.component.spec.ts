@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManutodistformComponent } from './manutodistform.component';
+import { SaltListComponent } from './salt-list.component';
 
-describe('ManutodistformComponent', () => {
-  let component: ManutodistformComponent;
-  let fixture: ComponentFixture<ManutodistformComponent>;
+describe('SaltListComponent', () => {
+  let component: SaltListComponent;
+  let fixture: ComponentFixture<SaltListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManutodistformComponent ]
+      declarations: [ SaltListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManutodistformComponent);
+    fixture = TestBed.createComponent(SaltListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

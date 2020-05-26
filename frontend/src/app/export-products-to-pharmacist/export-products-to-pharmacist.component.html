@@ -15,74 +15,72 @@
       (ngSubmit)="onSubmit()"
       class="form-size"
     >
-      
       <p>
         <mat-form-field style="padding-right: 14px;"
           ><input
             matInput
-            formControlName="pharmaID"
+            formControlName="pharmacistID"
             type="text"
-            name="pharmaID"
+            name="pharmacistID"
             required
             placeholder="Pharma ID"
           />
           <mat-error
             *ngIf="
-            exportToPharma.get('pharmaID').hasError('required') &&
-            exportToPharma.get('pharmaID').touched
+              exportToPharma.get('pharmacistID').hasError('required') &&
+              exportToPharma.get('pharmacistID').touched
             "
           >
-            ID is required
+            Pharmacist ID is required
           </mat-error>
         </mat-form-field>
-        
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="distID"
-          type="number"
-          name="distID"
-          required
-          placeholder="Distributor ID"
-        />
-        <mat-error
-          *ngIf="
-          exportToPharma.get('distID').hasError('required') &&
-          exportToPharma.get('distID').touched
-          "
-        >
-          Shipping ID is required
-        </mat-error>
-      </mat-form-field>
- 
-        <mat-form-field 
-        ><input
-          matInput
-          formControlName="shippingID"
-          type="number"
-          name="shippingID"
-          required
-          placeholder="Shipping ID"
-        />
-        <mat-error
-          *ngIf="
-          exportToPharma.get('shippingID').hasError('required') &&
-          exportToPharma.get('shippingID').touched
-          "
-        >
-          Shipping ID is required
-        </mat-error>
-      </mat-form-field>
 
+        <mat-form-field style="padding-right: 14px;"
+          ><input
+            matInput
+            formControlName="distributorId"
+            type="text"
+            name="distributorId"
+            required
+            placeholder="Distributor ID"
+          />
+          <mat-error
+            *ngIf="
+              exportToPharma.get('distributorId').hasError('required') &&
+              exportToPharma.get('distributorId').touched
+            "
+          >
+            Distributor ID is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          ><input
+            matInput
+            formControlName="batchId"
+            type="text"
+            name="batchId"
+            required
+            placeholder="Batch ID"
+          />
+          <mat-error
+            *ngIf="
+              exportToPharma.get('batchId').hasError('required') &&
+              exportToPharma.get('batchId').touched
+            "
+          >
+            Batch ID is required
+          </mat-error>
+        </mat-form-field>
       </p>
-    
+
       <br />
       <button mat-flat-button [disabled]="exportToPharma.invalid" type="submit">
         Submit
       </button>
     </form>
   </div>
-  <div fxFlex>
+  <!-- <div fxFlex>
     <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
-  </div>
+  </div> -->
 </div>
