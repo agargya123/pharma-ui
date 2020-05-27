@@ -24,8 +24,6 @@ import { LoginService } from "./services/login.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { FetchSaltsComponent } from './fetch-salts/fetch-salts.component';
 import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs.component';
-import { ManutodistformComponent } from './manutodistform/manutodistform.component';
-import { ManubyDistFormComponent } from './manuby-dist-form/manuby-dist-form.component';
 
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";

@@ -1,4 +1,4 @@
-.full-width {
+/*.full-width {
   width: 95%;
 }
 
@@ -20,13 +20,6 @@ form {
   border-radius: 10px;
 }
 
-.message {
-  color: red;
-  padding-left: 30px;
-  padding-bottom: 20px;
-  font-size: large;
-}
-
 .select-text {
   font-family: monospace;
   font-weight: bolder;
@@ -34,4 +27,29 @@ form {
 
 h2 {
   text-align: center;
+}*/
+
+
+mat-card {
+  max-width: 600px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.welcomeHeader {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.message {
+  padding-top: 20px;
+}
+.message span {
+  text-align: center;
+  color: red;
+  font-size: large;
 }

@@ -1,4 +1,4 @@
-<div
+<!-- <div
   fxLayout="row"
   fxLayout.lt-md="column"
   fxLayoutGap="20px"
@@ -62,9 +62,7 @@
             <span class="select-text">{{ role | uppercase }}</span>
           </mat-option>
         </mat-select>
-        <!-- <mat-error *ngIf="loginForm.get('role').hasError('required')"
-          >Please choose a role</mat-error
-        > -->
+        
       </mat-form-field>
       <br />
       <button mat-flat-button [disabled]="loginForm.invalid" type="submit">
@@ -75,4 +73,65 @@
   <div fxFlex>
     <span class="message" *ngIf="successMessage">{{ successMessage }}</span>
   </div>
+</div> !-->
+
+<div class="welcomeHeader">
+  <h1> Welcome to Pharma-Chain Services </h1>
 </div>
+
+<mat-card>
+  <mat-card-content>
+    <form novalidate
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="form-size">
+      <h2>Log In</h2>
+      <mat-error *ngIf="loginInvalid">
+        The username and password were not recognised
+      </mat-error>
+      <mat-form-field class="full-width-input">
+        <input matInput
+        formControlName="username"
+        type="text"
+        name="username"
+        required
+        placeholder="Username">
+        <mat-error  *ngIf="
+        loginForm.get('username').hasError('required') &&
+        loginForm.get('username').touched
+      ">
+          Please provide a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput
+        formControlName="password"
+        type="password"
+        name="username"
+        required
+        placeholder="Password">
+        <mat-error *ngIf="
+        loginForm.get('password').hasError('required') &&
+        loginForm.get('password').touched
+      ">
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Your Role</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let role of roles" [value]="role">
+            <span class="select-text">{{ role | uppercase }}</span>
+          </mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+      <button mat-raised-button color="primary">Login</button>
+    </form>
+
+    <div class="message">
+      <span *ngIf="successMessage">{{ successMessage }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

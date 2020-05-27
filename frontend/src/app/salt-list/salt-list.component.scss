@@ -2,6 +2,9 @@
   padding-bottom: 20px;
 }
 
+h2 {
+  padding-bottom: 15px;
+}
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
   flex-basis: 0;
@@ -20,4 +23,14 @@
   position: relative;
   margin-left: 50%;
   margin-right: 50%;
+}
+
+.key {
+  font-size: medium;
+  color: #202020;
+}
+
+.value {
+  font-size: medium;
+  font-weight: bold;
 }
