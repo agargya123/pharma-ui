@@ -48,6 +48,7 @@ import { ReceiveProductsFromManufacturerByDistributorComponent } from "./receive
 
 import { DashboardWelcomeComponent } from "./dashboard-welcome/dashboard-welcome.component";
 import { BlockchainService } from "./services/blockchain.service";
+import { DataSharingService } from "./services/data-sharing.service";
 
 @NgModule({
   declarations: [
@@ -99,11 +100,13 @@ import { BlockchainService } from "./services/blockchain.service";
     MatProgressSpinnerModule,
     MatSnackBarModule,
   ],
+  
   providers: [
     LoginService,
     MethodService,
     ParticipantService,
     BlockchainService,
+    DataSharingService,
     { provide: MatDialogRef, useValue: {} },
   ],
   bootstrap: [AppComponent],

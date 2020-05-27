@@ -11,12 +11,12 @@
     <button mat-flat-button routerLink="/drugHistory" color="accent">
       Get History
     </button>
-    <span [hidden]="tokenValue"
+    <span *ngIf="!isUserLoggedIn"
       ><button mat-stroked-button routerLink="/login">
         Login
       </button></span
     >
-    <span *ngIf="tokenValue"
+    <span *ngIf="isUserLoggedIn"
       ><button mat-stroked-button (click)="logout()">
         Logout
       </button></span

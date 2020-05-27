@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LoginService } from "../services/login.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DataSharingService } from "../services/data-sharing.service";
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dataSharingService: DataSharingService
   ) {
     this.createForm();
   }
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
             "username",
             this.loginForm.get("username").value
           );
+          this.dataSharingService.isUserLoggedIn.next(true);
           localStorage.setItem("role", this.loginForm.get("role").value);
           this.router.navigate(["/dashboard"]);
         },
