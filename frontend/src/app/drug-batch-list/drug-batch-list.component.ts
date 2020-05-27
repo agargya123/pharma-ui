@@ -13,6 +13,7 @@ export class DrugBatchListComponent implements OnInit {
   username: string;
   role: string;
   errorMessage: string;
+  stages:any=["Manufacturing","From Manufacturer to Distributor","From Distributor to Pharmacist","Pharmacist"];
 
   constructor(private participantService: ParticipantService) {
     this.username = localStorage.getItem("username");

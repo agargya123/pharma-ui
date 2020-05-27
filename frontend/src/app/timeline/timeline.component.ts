@@ -7,6 +7,7 @@ import { BlockchainService } from "../services/blockchain.service";
   styleUrls: ["./timeline.component.scss"],
 })
 export class TimelineComponent implements OnChanges {
+
   constructor(private blockchainService: BlockchainService) {}
   alternate: boolean = true;
   toggle: boolean = true;
@@ -17,29 +18,21 @@ export class TimelineComponent implements OnChanges {
   dotAnimation: boolean = true;
   side = "left";
   entries: any;
+stages:any=["Manufacturing","From Manufacturer to Distributor","From Distributor to Pharmacist","Pharmacist"];
+ 
   @Input()
   drugBatchId: string;
 
   ngOnChanges() {
     this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
       (data) => (this.entries = data),
-      (error) => console.log(error)
+      (error) => console.log(error),
+      
     );
+    console.log(this.entries);
   }
 
-  addEntry() {
-    this.entries.push({
-      stage: "Supplier",
-      organisationName: "MD labs and Chemicals",
-      address: "112, Building 14, Sector 56-C, Noida",
-      licenseNo: "66770F",
-      dateDispatched: "09-05-20",
-    });
-  }
 
-  removeEntry() {
-    this.entries.pop();
-  }
 
   onHeaderClick(event) {
     if (!this.expandEnabled) {
