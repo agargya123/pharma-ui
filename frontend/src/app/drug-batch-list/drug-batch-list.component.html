@@ -15,9 +15,23 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <pre>{{ drugBatch | json }}</pre>
+      <pre>
+        <ul class="nobull">
+          <li>Amount Manufactured: {{drugBatch._amount}}</li>
+          <li>Expiry Date of the Batch: {{drugBatch._expiryDate}}</li>
+          <li>Manufacturing Date of the Batch: {{drugBatch._manufacturingDate}}</li>
+          <li>Stage of supply chain: {{stages[drugBatch._state]}}</li>
+          
+         
+          
+         
+        </ul>
+    
+      </pre>
+ 
     </mat-expansion-panel>
   </mat-accordion>
+  
   <div [hidden]="listOfDrugBatch || errorMessage">
     <mat-spinner [diameter]="50"></mat-spinner>
   </div>

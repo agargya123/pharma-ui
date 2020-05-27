@@ -62,7 +62,6 @@ import { DataSharingService } from "./services/data-sharing.service";
 
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
-    //TimelineComponent,
     SaltListComponent,
     DrugBatchListComponent,
     SearchDrugHistComponent,

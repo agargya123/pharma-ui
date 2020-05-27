@@ -1,24 +1,88 @@
+
 <mgl-timeline
   [toggle]="toggle"
   [alternate]="alternate"
   [side]="side"
   *ngIf="entries"
 >
+
   <mgl-timeline-entry
-    *ngFor="let entry of entries; let i = index"
+  *ngFor="let entry of entries;let i=index"
+    
+    
+    
+ 
     (expand)="onExpandEntry($event, i)"
+    
   >
-    <mgl-timeline-entry-header (click)="onHeaderClick($event)">
-      <div class="entry">Format this plz</div>
+ 
+    <mgl-timeline-entry-header (click)="onHeaderClick($event)" >
+      <div class="entry" >{{stages[i]}} </div>
+    
+     
     </mgl-timeline-entry-header>
     <mgl-timeline-entry-content
       [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
     >
-      <div>
-        <div>{{ entry | json }}</div>
-      </div>
+    <pre *ngIf="i=='0'">
+      <ul class="nobull"><h2 class="ce">Raw Materials Used</h2>
+        <li>Amount of salt used: {{entry.value._salts[0].amount}}</li>
+        <li>Salt Name: {{entry.value._salts[0].salt.name}}</li>
+        <li>Date on which salt was sent to manufacturer: {{entry.value._salts[0].soldToManufDate}}</li>
+        <li>Name of the Supplier: {{entry.value._salts[0].supplierId}}</li>
+        <br>
+        <li>Manufacturing Date: {{entry.value._manufacturingDate}}</li>
+        <li>Amount Manufactured: {{entry.value._amount}}</li>
+        <li>Address of the manufacturer: {{entry.value._manufacturer.address}}</li>
+        <li>Organisation Name: {{entry.value._manufacturer.organizationName}}</li>
+        <li>Authority Number: {{entry.value._manufacturer.authorityNumber}}</li>
+        <li>FDA License Number: {{entry.value._manufacturer.FDALicenseNumber}}</li>
+        
+      </ul>
+    
+    </pre>
+    <pre *ngIf="i=='1'">
+      <ul class="nobull">
+        <li>Shipping ID: {{entry.value._shippingId}}</li>
+        <li>Date Shipped to Distributor: {{entry.value._dateShippedFromManufacturer}}</li>
+        <li>Address of Distributor: {{entry.value._distributor.address}}</li>
+        <li>Organisation Name: {{entry.value._distributor.organizationName}}</li>
+       
+      </ul>
+    </pre>
+    <pre *ngIf="i=='2'">
+      <ul class="nobull">
+        <li>Date on which batch was received by distributor: {{entry.value._dateReceivedByDistributor}}
+        <li>Amount of Batch Received: {{entry.value._distributor.batchReceived}}</li>
+        <li>Amount of Batch Shipped: {{entry.value._distributor.batchShipped}}</li>
+        <li>Date of Shipping: {{entry.value._dateReceivedByDistributor}}</li>
+       
+       
+      </ul>
+    
+    </pre>
+    
+    
+    <pre *ngIf="i=='3'">
+      <ul class="nobull">
+        <li>Date on which batch was Received: {{entry.value._dateReceivedByPharmacist}}</li>
+        <li>Name of the Drug: {{entry.value._name}}</li>
+        <li>Generic Name of the Drug: {{entry.value._genericName}}</li>
+        <li>Expiry Date: {{entry.value._expiryDate}}</li>
+        <li>Address of the Pharmacist: {{entry.value._pharmacist.address}}</li>
+        <li>Organisation Name: {{entry.value._pharmacist.organizationName}}</li>
+        <li>Authority Number: {{entry.value._pharmacist.authorityNumber}}</li>
+        <li>Drug Batches Available: {{entry.value._pharmacist.drugBatchsAvailable}}</li>
+        <li>Drug Batches Sold: {{entry.value._pharmacist.drugsSold}}</li>
+       
+      </ul>
+    
+    </pre>
+
+    
     </mgl-timeline-entry-content>
+   
     <mgl-timeline-entry-dot
       [class]="color ? 'primary' : 'accent'"
       [size]="size"
@@ -26,10 +90,16 @@
       [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
     ></mgl-timeline-entry-dot>
-    <mgl-timeline-entry-side class="date">{{
-      entry.dateDispatched
+   
+    <mgl-timeline-entry-side class="date" >Stage {{
+     i+1
     }}</mgl-timeline-entry-side>
+    
+ 
   </mgl-timeline-entry>
+
+  
+
 </mgl-timeline>
 
 <div [hidden]="entries">
