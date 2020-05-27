@@ -61,7 +61,6 @@ import { BlockchainService } from "./services/blockchain.service";
 
     ExportProductsToPharmacistComponent,
     BuyProductsFromPharmacistComponent,
-    //TimelineComponent,
     SaltListComponent,
     DrugBatchListComponent,
     SearchDrugHistComponent,
