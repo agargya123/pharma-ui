@@ -53,4 +53,17 @@ export class ParticipantService {
       }
     );
   }
+
+  getAllTransactions(): Observable<any> {
+    return this._http.get<any>(
+      BLOCKCHAIN_API_END_POINT +
+        "/" +
+        CHAINCODE_NAME +
+        "/getAllTransactions/",
+        
+      {
+        observe: "body",
+      }
+    );
+  }
 }

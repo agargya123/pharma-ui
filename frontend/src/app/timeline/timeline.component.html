@@ -29,7 +29,7 @@
       <ul class="nobull"><h2 class="ce">Raw Materials Used</h2>
         <li>Amount of salt used: {{entry.value._salts[0].amount}}</li>
         <li>Salt Name: {{entry.value._salts[0].salt.name}}</li>
-        <li>Date on which salt was sent to manufacturer: {{entry.value._salts[0].soldToManufDate}}</li>
+        <li>Date on which salt was sent to manufacturer: {{entry.value._salts[0].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</li>
         <li>Name of the Supplier: {{entry.value._salts[0].supplierId}}</li>
         <br>
         <li>Manufacturing Date: {{entry.value._manufacturingDate}}</li>

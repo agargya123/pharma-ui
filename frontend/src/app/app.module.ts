@@ -49,6 +49,7 @@ import { ReceiveProductsFromManufacturerByDistributorComponent } from "./receive
 import { DashboardWelcomeComponent } from "./dashboard-welcome/dashboard-welcome.component";
 import { BlockchainService } from "./services/blockchain.service";
 import { DataSharingService } from "./services/data-sharing.service";
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { DataSharingService } from "./services/data-sharing.service";
     ReceiveProductsFromManufacturerByDistributorComponent,
     ManufactureDrugsComponent,
     DashboardWelcomeComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,
