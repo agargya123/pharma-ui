@@ -20,6 +20,7 @@ export class TimelineComponent implements OnChanges {
   side = "left";
   entries: any;
   stages: any = [
+    "Shipping Raw Material",
     "Manufacturing Medicine",
     "Shipping Products to Distributor",
     "Shipping Products to Pharmacist",

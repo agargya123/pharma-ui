@@ -15,7 +15,8 @@
       [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
     >
-      <pre *ngIf="i == 0">
+    
+    <pre *ngIf="i == 0">
       <table>
         <h3 class="ce">Raw Materials Used</h3>
         <tr><td>
@@ -23,31 +24,34 @@
         <tr><td>
           <b>Salt Name: </b> {{entry.value._salts[0].salt.name}}</td></tr>     
         <tr><td>
-          <b>Number of salt units used: </b> {{entry.value._salts[0].amount}}</td></tr>
-        <tr><td>
-          <b>Address: </b> {{entry.value._salts[0].address}}</td></tr>
+          <b>Number of salt units supplied: </b> {{entry.value._salts[0].amount}}</td></tr>
         <tr><td>
           <b>Date of shipping to manufacturer:</b>  {{entry.value._salts[0].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</td></tr>    
-
-      <br>
+      </table>
+    </pre>
+      
+    <pre *ngIf="i == 1">
+      <table>
         <h3 class="ce">Manufacturing Details</h3>
         <tr><td>
           <b>Organisation Name: </b> {{entry.value._manufacturer.organizationName}}</td></tr>
-        <tr><td>
-          <b>Manufacturing Date: </b> {{entry.value._manufacturingDate}}</td></tr>
-        <tr><td>
-          <b>Number of units manufactured: </b> {{entry.value._amount}}</td></tr>
         <tr><td>
           <b>Address:</b> {{entry.value._manufacturer.address}}</td></tr>
         <tr><td>
           <b>Authority Number: </b> {{entry.value._manufacturer.authorityNumber}}</td></tr>
         <tr><td>
           <b>FDA License Number: </b> {{entry.value._manufacturer.FDALicenseNumber}}</td></tr>
-
-      </table>    
+        <tr><td>
+          <b>Manufacturing Date: </b> {{entry.value._manufacturingDate}}</td></tr>
+        <tr><td>
+          <b>Number of drug units manufactured: </b> {{entry.value._amount}}</td></tr>      
+        <tr><td>
+          <b>Date of Shipping to Distributor:</b> {{entry.value._dateShippedFromManufacturer}}</td></tr>
+      </table>  
     </pre>
-      <pre *ngIf="i == 1">
-      <table class="nobull">
+
+    <pre *ngIf="i == 2">
+      <table>
         <tr><td>
           <b>Name of Distributor: </b> {{entry.value._distributor.organizationName}}</td></tr> 
         <tr><td>
@@ -55,29 +59,16 @@
         <tr><td>
           <b>Shipping ID:</b> {{entry.value._shippingId}}</td></tr>
         <tr><td>
-          <b>Date of Shipping to Distributor:</b> {{entry.value._dateShippedFromManufacturer}}</td></tr>
-
-
-      </table>  
-
-    </pre>
-      <pre *ngIf="i == 2">
-      <table class="nobull">
-        <tr><td>
-          <b>Date the shipment was received by Distributor: </b> {{entry.value._dateReceivedByDistributor}}</td></tr>
+          <b>Date the shipment was received by Distributor: </b> {{entry.value._dateReceivedByDistributor}}</td></tr>  
         <tr><td>
           <b>Number of batch units received: </b> {{entry.value._distributor.batchReceived}}</td></tr>
         <tr><td>
           <b>Number of batch units shipped: </b> {{entry.value._distributor.batchShipped}}</td></tr>
-        <tr><td>
-          <b>Date of Shipping:</b> {{entry.value._dateReceivedByDistributor}}</td></tr>
-      </table> 
-    
+      </table>  
     </pre>
 
-      <pre *ngIf="i == 3">
+    <pre *ngIf="i == 3">
       <table class="nobull">
-      <h3 class="ce">Pharmacy Details</h3>  
         <tr><td>
           <b>Name of Pharmacy: </b> {{entry.value._pharmacist.organizationName}}</td></tr> 
         <tr><td>
@@ -85,9 +76,12 @@
         <tr><td>
           <b>Authority Number:</b> {{entry.value._pharmacist.authorityNumber}}</td></tr>          
         <tr><td>
-          <b>Date on which batch was received by Pharmacist: </b> {{entry.value._dateReceivedByPharmacist}}</td></tr>
-        
-
+          <b>Date on which batch was received by Pharmacist: </b> {{entry.value._dateReceivedByPharmacist}}</td></tr>  
+      </table>
+    </pre> 
+    
+    <pre *ngIf="i == 4">
+      <table class="nobull">
         <h3 class="ce">Drug Details</h3>
         <tr><td>
           <b>Scientific Name of the Drug: </b> {{entry.value._name}}</td></tr>
@@ -100,7 +94,6 @@
         <tr><td>
           <b>Drug Batches Sold: </b> {{entry.value._pharmacist.drugsSold}}</td></tr>
       </table>
-    
     </pre>
     </mgl-timeline-entry-content>
 
