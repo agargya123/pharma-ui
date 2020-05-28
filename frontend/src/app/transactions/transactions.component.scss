@@ -1,18 +1,23 @@
 .container {
-    padding: 30px 75px;
+  padding: 30px 75px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .mat-card {
-    border-radius: 10px;
-    margin-bottom: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .mat-expansion-panel {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
+.mat-spinner {
+  position: relative;
+  margin-left: 50%;
+  margin-right: 50%;
+}

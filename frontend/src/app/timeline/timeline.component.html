@@ -1,31 +1,21 @@
-
 <mgl-timeline
   [toggle]="toggle"
   [alternate]="alternate"
   [side]="side"
   *ngIf="entries"
 >
-
   <mgl-timeline-entry
-  *ngFor="let entry of entries;let i=index"
-    
-    
-    
- 
+    *ngFor="let entry of entries; let i = index"
     (expand)="onExpandEntry($event, i)"
-    
   >
- 
-    <mgl-timeline-entry-header (click)="onHeaderClick($event)" >
-      <div class="entry" >{{stages[i]}} </div>
-    
-     
+    <mgl-timeline-entry-header (click)="onHeaderClick($event)">
+      <div class="entry">{{ stages[i] }}</div>
     </mgl-timeline-entry-header>
     <mgl-timeline-entry-content
       [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
     >
-    <pre *ngIf="i=='0'">
+      <pre *ngIf="i == 0">
       <ul class="nobull"><h2 class="ce">Raw Materials Used</h2>
         <li>Amount of salt used: {{entry.value._salts[0].amount}}</li>
         <li>Salt Name: {{entry.value._salts[0].salt.name}}</li>
@@ -42,7 +32,7 @@
       </ul>
     
     </pre>
-    <pre *ngIf="i=='1'">
+      <pre *ngIf="i == 1">
       <ul class="nobull">
         <li>Shipping ID: {{entry.value._shippingId}}</li>
         <li>Date Shipped to Distributor: {{entry.value._dateShippedFromManufacturer}}</li>
@@ -51,7 +41,7 @@
        
       </ul>
     </pre>
-    <pre *ngIf="i=='2'">
+      <pre *ngIf="i == 2">
       <ul class="nobull">
         <li>Date on which batch was received by distributor: {{entry.value._dateReceivedByDistributor}}
         <li>Amount of Batch Received: {{entry.value._distributor.batchReceived}}</li>
@@ -62,9 +52,8 @@
       </ul>
     
     </pre>
-    
-    
-    <pre *ngIf="i=='3'">
+
+      <pre *ngIf="i == 3">
       <ul class="nobull">
         <li>Date on which batch was Received: {{entry.value._dateReceivedByPharmacist}}</li>
         <li>Name of the Drug: {{entry.value._name}}</li>
@@ -79,10 +68,8 @@
       </ul>
     
     </pre>
-
-    
     </mgl-timeline-entry-content>
-   
+
     <mgl-timeline-entry-dot
       [class]="color ? 'primary' : 'accent'"
       [size]="size"
@@ -90,18 +77,21 @@
       [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
     ></mgl-timeline-entry-dot>
-   
-    <mgl-timeline-entry-side class="date" >Stage {{
-     i+1
-    }}</mgl-timeline-entry-side>
-    
- 
+
+    <mgl-timeline-entry-side class="date"
+      >Stage {{ i + 1 }}</mgl-timeline-entry-side
+    >
   </mgl-timeline-entry>
-
-  
-
 </mgl-timeline>
 
-<div [hidden]="entries">
+<div [hidden]="entries || notFound">
   <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="notFound" class="not-found">
+  <i class="material-icons" style="font-size: 300px; color: grey;"
+    >error_outline</i
+  >
+  <h1>No History Found!</h1>
+  <h2>Check ID again!</h2>
 </div>
