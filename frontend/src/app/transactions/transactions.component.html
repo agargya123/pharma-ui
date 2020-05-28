@@ -2,25 +2,29 @@
   <h2>Transaction History</h2>
 
   <div *ngFor="let transaction of listOfTransactions; let i = index">
-  <mat-card>
-    <mat-card-title> Transaction ID : {{ transaction.value.tx_id }} </mat-card-title>
-    <mat-card-subtitle> Occured on : {{ transaction.value.timestamp.low | date:'yyyy-MM-dd HH:mm' }}
-    </mat-card-subtitle>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-description >
-          Click to view Details
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <pre>
+    <mat-card class="z-depth">
+      <mat-card-title> Transaction ID : {{ transaction.value.tx_id }} </mat-card-title>
+      <mat-card-subtitle> Occured on : {{ transaction.value.timestamp.low | date:'yyyy-MM-dd HH:mm' }}
+      </mat-card-subtitle>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            Click to view Details
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <pre>
         {{ transaction.value.value | json }}
       </pre>
-    </mat-expansion-panel>
-    <mat-card-content>
-      <p>
-        Type : <b>{{ transaction.type }}</b>
-      </p>
-    </mat-card-content>
-  </mat-card>
+      </mat-expansion-panel>
+      <mat-card-content>
+        <p>
+          Type : <b>{{ transaction.type }}</b>
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="bt"><mat-icon aria-hidden="false" aria-label="Downward arrow">arrow_downward</mat-icon></div>
+
+
 </div>
 </div>
