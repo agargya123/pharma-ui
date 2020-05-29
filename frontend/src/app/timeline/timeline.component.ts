@@ -31,6 +31,7 @@ export class TimelineComponent implements OnChanges {
 
   ngOnChanges() {
     this.notFound = false;
+    this.entries = null;
     this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
       (data) => {
         this.entries = data;
