@@ -2,11 +2,22 @@
   <div fxFlex class="text-input">
     <h1>Search Provenance of the Drug</h1>
     <form novalidate [formGroup]="drugHistoryForm">
+      <mat-slide-toggle formControlName="type" [color]="'primary'">
+        <p>Choose the type of Input</p>
+        <p>
+          Current Type:
+          <b>{{
+            drugHistoryForm.get("type").value == false
+              ? typeMap.false
+              : typeMap.true
+          }}</b>
+        </p>
+      </mat-slide-toggle>
       <mat-form-field class="input-field">
         <input
           matInput
           type="text"
-          placeholder="Enter Drug Batch ID here"
+          placeholder="Enter Unique ID here"
           formControlName="drugBatchId"
           name="drugBatchId"
         />
@@ -19,7 +30,12 @@
           Drug ID is required
         </mat-error>
       </mat-form-field>
-      <button mat-flat-button color="primary" (click)="OnSubmit()">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="OnSubmit()"
+        [disabled]="drugHistoryForm.invalid"
+      >
         Search
       </button>
     </form>
@@ -27,6 +43,7 @@
   <div fxFlex>
     <app-timeline
       [drugBatchId]="drugBatchId"
+      [type]="type"
       *ngIf="drugBatchId"
     ></app-timeline>
   </div>

@@ -19,6 +19,8 @@ export class TimelineComponent implements OnChanges {
   dotAnimation: boolean = true;
   side = "left";
   entries: any;
+  drugDetails: any;
+
   stages: any = [
     "Shipping Raw Material",
     "Manufacturing Medicine",
@@ -30,20 +32,53 @@ export class TimelineComponent implements OnChanges {
   @Input()
   drugBatchId: string;
 
+  @Input()
+  type: boolean;
+
   ngOnChanges() {
     this.notFound = false;
     this.entries = null;
-    this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
-      (data) => {
-        this.entries = data;
-        console.log(this.entries);
-        if (this.entries == null) this.notFound = true;
-      },
-      (error) => {
-        this.notFound = true;
-        console.log(error);
-      }
-    );
+    this.drugDetails = null;
+
+    if (this.type == false)
+      this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
+        (data) => {
+          console.log(data[0].value._type);
+
+          if (!data || data[0].value._type != "io.pharmachain.drugBatch")
+            this.notFound = true;
+          else this.entries = data;
+        },
+        (error) => {
+          this.notFound = true;
+          console.log(error);
+        }
+      );
+    else {
+      this.blockchainService.getDrugByID(this.drugBatchId).subscribe(
+        (data) => {
+          if (data && data._type === "io.pharmachain.drug") {
+            this.drugDetails = data;
+            this.blockchainService
+              .getDrugBatchHistory(data._batch.id)
+              .subscribe(
+                (entriesData) => {
+                  this.entries = entriesData;
+                  if (!data || !this.entries) this.notFound = true;
+                },
+                (error) => {
+                  this.notFound = true;
+                  console.log(error);
+                }
+              );
+          } else this.notFound = true;
+        },
+        (error) => {
+          this.notFound = true;
+          console.log(error);
+        }
+      );
+    }
   }
 
   onHeaderClick(event) {

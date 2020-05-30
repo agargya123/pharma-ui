@@ -30,18 +30,26 @@ p {
   color: grey;
 }
 
-li { background: lightgray; }
-li:nth-child(odd) { background: pink;}
 li {
-    margin: 5px;
-    padding:0.005em;
-} 
-table{
+  background: lightgray;
+}
+li:nth-child(odd) {
+  background: pink;
+}
+li {
+  margin: 5px;
+  padding: 0.005em;
+}
+table {
   margin: 0px auto;
 }
 
-tr{
+tr {
   font-family: Arial;
   padding-bottom: 15px;
   padding-inline-start: 10px;
+}
+
+.drug-detail {
+  padding: 10px;
 }

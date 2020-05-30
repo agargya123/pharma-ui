@@ -1,3 +1,22 @@
+<div *ngIf="drugDetails" class="drug-detail">
+  <!-- <pre>{{ drugDetails | json }}</pre> -->
+  <table>
+    <h1 class="ce">Medicine Details</h1>
+    <tr>
+      <td><b>Name of the Drug: </b> {{ drugDetails._name }}</td>
+    </tr>
+    <tr>
+      <td><b>Amount of the Drug: </b> {{ drugDetails._amount }} Tablets</td>
+    </tr>
+    <tr>
+      <td><b>Customer ID: </b> {{ drugDetails._customerID }}</td>
+    </tr>
+    <tr>
+      <td><b>Date of purchase: </b> {{ drugDetails._dateSold | date }}</td>
+    </tr>
+  </table>
+</div>
+
 <mgl-timeline
   [toggle]="toggle"
   [alternate]="alternate"
@@ -15,8 +34,7 @@
       [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
     >
-    
-    <pre *ngIf="i == 0">
+      <pre *ngIf="i == 0">
       <table>
         <h3 class="ce">Raw Materials Used</h3>
         <tr><td>
@@ -29,8 +47,8 @@
           <b>Date of shipping to manufacturer:</b>  {{entry.value._salts[0].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</td></tr>    
       </table>
     </pre>
-      
-    <pre *ngIf="i == 1">
+
+      <pre *ngIf="i == 1">
       <table>
         <h3 class="ce">Manufacturing Details</h3>
         <tr><td>
@@ -50,7 +68,7 @@
       </table>  
     </pre>
 
-    <pre *ngIf="i == 2">
+      <pre *ngIf="i == 2">
       <table>
         <tr><td>
           <b>Name of Distributor: </b> {{entry.value._distributor.organizationName}}</td></tr> 
@@ -67,7 +85,7 @@
       </table>  
     </pre>
 
-    <pre *ngIf="i == 3">
+      <pre *ngIf="i == 3">
       <table class="nobull">
         <tr><td>
           <b>Name of Pharmacy: </b> {{entry.value._pharmacist.organizationName}}</td></tr> 
@@ -78,9 +96,9 @@
         <tr><td>
           <b>Date on which batch was received by Pharmacist: </b> {{entry.value._dateReceivedByPharmacist}}</td></tr>  
       </table>
-    </pre> 
-    
-    <pre *ngIf="i == 4">
+    </pre>
+
+      <pre *ngIf="i == 4">
       <table class="nobull">
         <h3 class="ce">Drug Details</h3>
         <tr><td>
