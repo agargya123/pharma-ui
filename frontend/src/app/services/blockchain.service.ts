@@ -32,6 +32,7 @@ export class BlockchainService {
 
   getRawMaterialFromSupplier(formDetails: any): Observable<any> {
     this.formDataSubmit["supplierId"] = formDetails["supplierId"];
+    // this.formDataSubmit["organizationname"]=formDetails["organizationName"];
     this.formDataSubmit["manufacturerId"] = formDetails["manufacturerId"];
 
     this.formDataSubmit["rawMaterialSupply"] = {};

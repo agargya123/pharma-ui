@@ -31,14 +31,17 @@ p {
 }
 
 li {
+  padding-block: 5px;
   background: lightgray;
 }
 li:nth-child(odd) {
   background: pink;
 }
 li {
-  margin: 5px;
-  padding: 0.005em;
+  margin-bottom: 5px;
+  margin-top: 1px;
+
+  //padding: 0.005em;
 }
 table {
   margin: 0px auto;
@@ -46,8 +49,8 @@ table {
 
 tr {
   font-family: Arial;
-  padding-bottom: 15px;
-  padding-inline-start: 10px;
+  // padding-bottom: 0px;
+  // padding-block: 5px;
 }
 
 .drug-detail {
