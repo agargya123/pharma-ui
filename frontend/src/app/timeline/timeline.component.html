@@ -38,7 +38,7 @@
       <table>
         <h3 class="ce">Raw Materials Used</h3>
         <tr><td>
-          <b>Name of the Supplier: </b>  {{entry.value._salts[1].supplierId}}</td></tr>
+          <b>Name of the Supplier: </b>  {{entry|json}}</td></tr>
         <li *ngFor="let salt of entry.value._salts;let j = index" type="none" > 
           <tr><td>
             <b>Salt Name: </b> {{entry.value._salts[j].salt.name}}</td></tr>     
