@@ -38,14 +38,16 @@
       <table>
         <h3 class="ce">Raw Materials Used</h3>
         <tr><td>
-          <b>Name of the Supplier: </b>  {{entry.value._salts[0].supplierId}}</td></tr>
-        <tr><td>
-          <b>Salt Name: </b> {{entry.value._salts[0].salt.name}}</td></tr>     
-        <tr><td>
-          <b>Number of salt units supplied: </b> {{entry.value._salts[0].amount}}</td></tr>
-        <tr><td>
-          <b>Date of shipping to manufacturer:</b>  {{entry.value._salts[0].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</td></tr>    
-      </table>
+          <b>Name of the Supplier: </b>  {{entry.value._salts[1].supplierId}}</td></tr>
+        <li *ngFor="let salt of entry.value._salts;let j = index" type="none" > 
+          <tr><td>
+            <b>Salt Name: </b> {{entry.value._salts[j].salt.name}}</td></tr>     
+          <tr><td>
+            <b>Number of salt units supplied: </b> {{entry.value._salts[j].amount}}</td></tr>
+          <tr><td>
+            <b>Date of shipping to manufacturer:</b>  {{entry.value._salts[j].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</td></tr>    
+        </li>
+        </table>
     </pre>
 
       <pre *ngIf="i == 1">
