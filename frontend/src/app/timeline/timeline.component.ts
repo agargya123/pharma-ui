@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from "@angular/core";
 import { BlockchainService } from "../services/blockchain.service";
+import { not } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-timeline",
@@ -7,32 +8,41 @@ import { BlockchainService } from "../services/blockchain.service";
   styleUrls: ["./timeline.component.scss"],
 })
 export class TimelineComponent implements OnChanges {
-
   constructor(private blockchainService: BlockchainService) {}
   alternate: boolean = true;
   toggle: boolean = true;
   color: boolean = false;
   size: number = 40;
+  notFound: boolean = false;
   expandEnabled: boolean = true;
   contentAnimation: boolean = true;
   dotAnimation: boolean = true;
   side = "left";
   entries: any;
-stages:any=["Manufacturing","From Manufacturer to Distributor","From Distributor to Pharmacist","Pharmacist"];
- 
+  stages: any = [
+    "Manufacturing Medicine",
+    "Shipping Products to Distributor",
+    "Shipping Products to Pharmacist",
+    "Purchasing the Medicine",
+  ];
+
   @Input()
   drugBatchId: string;
 
   ngOnChanges() {
+    this.notFound = false;
     this.blockchainService.getDrugBatchHistory(this.drugBatchId).subscribe(
-      (data) => (this.entries = data),
-      (error) => console.log(error),
-      
+      (data) => {
+        this.entries = data;
+        console.log(this.entries);
+        if (this.entries == null) this.notFound = true;
+      },
+      (error) => {
+        this.notFound = true;
+        console.log(error);
+      }
     );
-    console.log(this.entries);
   }
-
-
 
   onHeaderClick(event) {
     if (!this.expandEnabled) {
@@ -47,7 +57,7 @@ stages:any=["Manufacturing","From Manufacturer to Distributor","From Distributor
   }
 
   onExpandEntry(expanded, index) {
-    console.log(`Expand status of entry #${index} changed to ${expanded}`);
+    // console.log(`Expand status of entry #${index} changed to ${expanded}`);
   }
 
   toggleSide() {

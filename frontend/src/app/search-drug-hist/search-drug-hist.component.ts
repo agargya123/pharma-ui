@@ -9,7 +9,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class SearchDrugHistComponent implements OnInit {
   drugHistoryForm: FormGroup;
   drugBatchId: string;
-  notfound: boolean;
   constructor() {
     this.createForm();
   }
@@ -24,8 +23,5 @@ export class SearchDrugHistComponent implements OnInit {
 
   OnSubmit() {
     this.drugBatchId = this.drugHistoryForm.get("drugBatchId").value;
-    if(this.drugBatchId)
-      this.notfound=false;
-
   }
 }

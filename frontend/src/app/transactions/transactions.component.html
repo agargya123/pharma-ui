@@ -1,10 +1,17 @@
 <div class="container">
-  <h2>Transaction History</h2>
+  <h1>Transaction History</h1>
 
   <div *ngFor="let transaction of listOfTransactions; let i = index">
     <mat-card class="z-depth">
-      <mat-card-title> Transaction ID : {{ transaction.value.tx_id }} </mat-card-title>
-      <mat-card-subtitle> Occured on : {{ transaction.value.timestamp.low | date:'yyyy-MM-dd HH:mm' }}
+      <mat-card-title>
+        Transaction ID : {{ transaction.value.tx_id }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        Occured on :
+        {{
+          transaction.value.timestamp.low + 1590648590659
+            | date: "yyyy-MM-dd HH:mm"
+        }}
       </mat-card-subtitle>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -15,6 +22,7 @@
         <pre>
         {{ transaction.value.value | json }}
       </pre>
+     
       </mat-expansion-panel>
       <mat-card-content>
         <p>
@@ -26,5 +34,9 @@
     <div class="bt"><mat-icon aria-hidden="false" aria-label="Downward arrow">arrow_downward</mat-icon></div>
 
 
-</div>
+  </div>
+
+  <div [hidden]="listOfTransactions">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
 </div>
