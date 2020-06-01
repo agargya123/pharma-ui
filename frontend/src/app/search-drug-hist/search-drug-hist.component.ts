@@ -9,6 +9,12 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class SearchDrugHistComponent implements OnInit {
   drugHistoryForm: FormGroup;
   drugBatchId: string;
+  type: boolean;
+
+  typeMap = {
+    false: "Drug Batch ID",
+    true: "Drug ID",
+  };
   constructor() {
     this.createForm();
   }
@@ -18,10 +24,13 @@ export class SearchDrugHistComponent implements OnInit {
   createForm() {
     this.drugHistoryForm = new FormGroup({
       drugBatchId: new FormControl("", Validators.required),
+      type: new FormControl(false),
     });
   }
 
   OnSubmit() {
+    console.log(this.drugHistoryForm.value);
     this.drugBatchId = this.drugHistoryForm.get("drugBatchId").value;
+    this.type = this.drugHistoryForm.get("type").value;
   }
 }

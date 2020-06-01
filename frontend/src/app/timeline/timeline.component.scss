@@ -13,7 +13,8 @@ p {
 
 .mat-spinner {
   position: relative;
-  margin-left: 50%;
+  margin-top: 6%;
+  margin-left: 45%;
   margin-right: 50%;
 }
 
@@ -22,8 +23,36 @@ p {
 }
 .ce {
   text-align: center;
+  font-family: Arial;
 }
 .not-found {
   text-align: center;
   color: grey;
+}
+
+li {
+  padding-block: 5px;
+  background: lightgray;
+}
+li:nth-child(odd) {
+  background: pink;
+}
+li {
+  margin-bottom: 5px;
+  margin-top: 1px;
+
+  //padding: 0.005em;
+}
+table {
+  margin: 0px auto;
+}
+
+tr {
+  font-family: Arial;
+  // padding-bottom: 0px;
+  // padding-block: 5px;
+}
+
+.drug-detail {
+  padding: 10px;
 }

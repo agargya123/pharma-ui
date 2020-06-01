@@ -32,6 +32,7 @@ export class BlockchainService {
 
   getRawMaterialFromSupplier(formDetails: any): Observable<any> {
     this.formDataSubmit["supplierId"] = formDetails["supplierId"];
+    // this.formDataSubmit["organizationname"]=formDetails["organizationName"];
     this.formDataSubmit["manufacturerId"] = formDetails["manufacturerId"];
 
     this.formDataSubmit["rawMaterialSupply"] = {};
@@ -151,6 +152,12 @@ export class BlockchainService {
         CHAINCODE_NAME +
         "/getDrugBatchHistory/" +
         drugBatchId
+    );
+  }
+
+  getDrugByID(drugId: string): Observable<any> {
+    return this._http.get(
+      BLOCKCHAIN_API_END_POINT + "/" + CHAINCODE_NAME + "/getDrugById/" + drugId
     );
   }
 }

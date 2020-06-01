@@ -17,13 +17,13 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginService } from "./services/login.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { FetchSaltsComponent } from './fetch-salts/fetch-salts.component';
-import { ManufactureDrugsComponent } from './manufacture-drugs/manufacture-drugs.component';
+import { FetchSaltsComponent } from "./fetch-salts/fetch-salts.component";
+import { ManufactureDrugsComponent } from "./manufacture-drugs/manufacture-drugs.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
@@ -49,7 +49,12 @@ import { ReceiveProductsFromManufacturerByDistributorComponent } from "./receive
 import { DashboardWelcomeComponent } from "./dashboard-welcome/dashboard-welcome.component";
 import { BlockchainService } from "./services/blockchain.service";
 import { DataSharingService } from "./services/data-sharing.service";
-import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionsComponent } from "./transactions/transactions.component";
+
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import "hammerjs";
 
 @NgModule({
   declarations: [
@@ -100,8 +105,10 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    FlexLayoutModule,
+    MatSlideToggleModule,
   ],
-  
+
   providers: [
     LoginService,
     MethodService,
@@ -112,4 +119,4 @@ import { TransactionsComponent } from './transactions/transactions.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
