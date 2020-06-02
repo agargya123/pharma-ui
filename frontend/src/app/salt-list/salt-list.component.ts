@@ -12,9 +12,9 @@ export class SaltListComponent implements OnInit {
   isDescriptionVisible: boolean;
   supplier: Supplier;
   listOfRawMaterial: SaltBatch[];
-  
-  constructor(private participantService: ParticipantService) {
+  isFound: boolean = true;
 
+  constructor(private participantService: ParticipantService) {
     this.isDescriptionVisible = true;
 
     participantService
@@ -26,11 +26,13 @@ export class SaltListComponent implements OnInit {
         (data) => {
           this.supplier = data;
           this.listOfRawMaterial = this.supplier._rawMaterialAvailable;
+          if (this.listOfRawMaterial == undefined) this.isFound = false;
         },
-        (error) => {}
+        (error) => {
+          this.isFound = false;
+        }
       );
   }
-
 
   toggleDescription() {
     this.isDescriptionVisible = !this.isDescriptionVisible;
@@ -38,7 +40,7 @@ export class SaltListComponent implements OnInit {
 
   setClass() {
     let classes = {
-      'is-visible': true
+      "is-visible": true,
     };
 
     return classes;

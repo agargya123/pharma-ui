@@ -18,7 +18,7 @@ export class BlockchainService {
       console.log(value);
       this.formDataSubmit["rawMaterialSupply"][
         formDetails["rawMaterialSupply"][value].salt
-      ] = formDetails["rawMaterialSupply"][value].quantity;
+      ] = Number(formDetails["rawMaterialSupply"][value].quantity);
     }
     console.log(this.formDataSubmit);
     return this._http.post(
@@ -41,7 +41,7 @@ export class BlockchainService {
       console.log(value);
       this.formDataSubmit["rawMaterialSupply"][
         formDetails["rawMaterialSupply"][value].salt
-      ] = formDetails["rawMaterialSupply"][value].quantity;
+      ] = Number(formDetails["rawMaterialSupply"][value].quantity);
     }
     console.log(this.formDataSubmit);
     return this._http.post(
@@ -158,6 +158,12 @@ export class BlockchainService {
   getDrugByID(drugId: string): Observable<any> {
     return this._http.get(
       BLOCKCHAIN_API_END_POINT + "/" + CHAINCODE_NAME + "/getDrugById/" + drugId
+    );
+  }
+
+  getAllDrugs(): Observable<any> {
+    return this._http.get(
+      BLOCKCHAIN_API_END_POINT + "/" + CHAINCODE_NAME + "/getAllDrugs"
     );
   }
 }

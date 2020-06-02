@@ -55,6 +55,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import "hammerjs";
+import { DrugSoldComponent } from './drug-sold/drug-sold.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import "hammerjs";
     ManufactureDrugsComponent,
     DashboardWelcomeComponent,
     TransactionsComponent,
+    DrugSoldComponent,
   ],
   imports: [
     BrowserModule,

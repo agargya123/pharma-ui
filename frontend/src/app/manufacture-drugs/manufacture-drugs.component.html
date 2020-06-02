@@ -1,15 +1,14 @@
 <div
-  fxLayout="row"
+  fxLayout="column"
   fxLayout.lt-md="column"
   fxLayoutGap="20px"
   fxLayoutGap.lt-md="0px"
   fxLayoutAlign="center center"
   class="container"
 >
-  <div fxFlex><h2>Product Details</h2></div>
+  <h2>Manufacture Drugs</h2>
   <div fxFlex>
     <form
-      fxFlex="50"
       novalidate
       [formGroup]="manufacturedrugsForm"
       (ngSubmit)="onSubmit()"

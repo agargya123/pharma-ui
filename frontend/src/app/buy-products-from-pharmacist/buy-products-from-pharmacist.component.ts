@@ -45,7 +45,7 @@ export class BuyProductsFromPharmacistComponent implements OnInit {
       .buyProductsFromPharmacist(this.buyfromPharma.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "Item Sold to customer!";
           this.closeForm();
         },
         (error) => {

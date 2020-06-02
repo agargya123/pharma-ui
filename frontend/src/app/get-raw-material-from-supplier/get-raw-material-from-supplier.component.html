@@ -1,6 +1,6 @@
 <!--<button mat-button mat-dialog-close><h2>&times;</h2></button>-->
 <div
-  fxLayout="row"
+  fxLayout="column"
   fxLayout.lt-md="column"
   fxLayoutGap="20px"
   fxLayoutGap.lt-md="0px"
@@ -8,10 +8,9 @@
   class="container"
 >
   <!---- <mat-dialog-content>-->
-  <div fxFlex><h2>Product Details</h2></div>
+  <h2>Order Salts From Supplier</h2>
   <div fxFlex>
     <form
-      fxFlex="50"
       novalidate
       [formGroup]="getRawMaterialForm"
       (ngSubmit)="onSubmit()"

@@ -64,7 +64,7 @@ export class FetchSaltsComponent implements OnInit {
     // console.log(this.fetchSaltsForm.value);
     this.blockchainService.fetchSalts(this.fetchSaltsForm.value).subscribe(
       (data) => {
-        this.returnValue = data;
+        this.returnValue = "Salt has been added into your storage successfully";
         this.closeForm();
       },
       (error) => {

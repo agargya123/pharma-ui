@@ -35,6 +35,15 @@
             {{ method.name }}
           </button>
         </mat-menu>
+        <button
+          mat-flat-button
+          class="mat-button-class"
+          *ngIf="role == 'pharmacist'"
+          style="float: right;"
+          routerLink="drug-sold"
+        >
+          Sold Medicines
+        </button>
       </mat-card-content>
     </mat-card>
   </div>

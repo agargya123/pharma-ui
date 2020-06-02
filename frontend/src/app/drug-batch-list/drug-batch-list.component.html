@@ -1,5 +1,6 @@
 <div>
   <h2>Drug Batch Available</h2>
+  <br />
   <mat-accordion class="example-headers-align" multi *ngIf="listOfDrugBatch">
     <mat-expansion-panel
       *ngFor="let drugBatch of listOfDrugBatch; let i = index"
@@ -7,7 +8,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h4>
-            {{ i + 1 }}. {{ drugBatch._genericName }} | ID: {{ drugBatch._id }}
+            {{ i + 1 }}. Name: {{ drugBatch._name }} | ID: {{ drugBatch._id }}
           </h4>
         </mat-panel-title>
         <mat-panel-description>
@@ -15,23 +16,27 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <pre>
+      <div>
         <ul class="nobull">
-          <li>Amount Manufactured: {{drugBatch._amount}}</li>
-          <li>Expiry Date of the Batch: {{drugBatch._expiryDate}}</li>
-          <li>Manufacturing Date of the Batch: {{drugBatch._manufacturingDate}}</li>
-          <li>Stage of supply chain: {{stages[drugBatch._state]}}</li>
-          
-         
-          
-         
+          <li><b>Generic Name: </b>{{ drugBatch._genericName }}</li>
+          <li><b>Amount Manufactured: </b>{{ drugBatch._amount }}</li>
+          <li>
+            <b>Expiry Date of the Batch: </b
+            >{{ drugBatch._expiryDate | date: "short" }}
+          </li>
+          <li>
+            <b>Manufacturing Date of the Batch:</b>
+            {{ drugBatch._manufacturingDate }}
+          </li>
+          <li><b>Stage of supply chain: </b>{{ stages[drugBatch._state] }}</li>
+          <li *ngIf="drugBatch._shippingId">
+            <b>Shipping ID Associated: </b>{{ drugBatch._shippingId }}
+          </li>
         </ul>
-    
-      </pre>
- 
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
-  
+
   <div [hidden]="listOfDrugBatch || errorMessage">
     <mat-spinner [diameter]="50"></mat-spinner>
   </div>

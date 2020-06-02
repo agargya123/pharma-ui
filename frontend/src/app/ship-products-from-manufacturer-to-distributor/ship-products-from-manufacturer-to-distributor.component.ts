@@ -48,7 +48,7 @@ export class ShipProductsFromManufacturerToDistributorComponent
       .shipProductsFromManufacturerToDistributor(this.manutodistForm.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "Batches have been shipped successfully";
           this.closeForm();
         },
         (error) => {

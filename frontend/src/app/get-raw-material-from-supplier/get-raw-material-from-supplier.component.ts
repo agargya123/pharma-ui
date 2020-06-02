@@ -64,7 +64,7 @@ export class GetRawMaterialFromSupplierComponent implements OnInit {
       .getRawMaterialFromSupplier(this.getRawMaterialForm.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "All the salts have been received";
           this.closeForm();
         },
         (error) => {

@@ -8,10 +8,7 @@
       </mat-card-title>
       <mat-card-subtitle>
         Occured on :
-        {{
-          transaction.value.timestamp.low + 1590648590659
-            | date: "yyyy-MM-dd HH:mm"
-        }}
+        {{ transaction.value.timestamp.low * 1000 | date: "short" }}
       </mat-card-subtitle>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -19,10 +16,7 @@
             Click to view Details
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <pre>
-        {{ transaction.value.value | json }}
-      </pre
-        >
+        <pre>{{ transaction.value.value | json }}</pre>
       </mat-expansion-panel>
       <mat-card-content>
         <p>

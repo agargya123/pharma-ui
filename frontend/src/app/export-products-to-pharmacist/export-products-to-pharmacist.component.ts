@@ -39,7 +39,7 @@ export class ExportProductsToPharmacistComponent implements OnInit {
       .exportProductsToPharmacist(this.exportToPharma.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "Drugs Exported Successfully";
           this.closeForm();
         },
         (error) => {

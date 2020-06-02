@@ -71,7 +71,7 @@ export class ManufactureDrugsComponent implements OnInit {
       .manufactureDrugs(this.manufacturedrugsForm.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "Drug have been manufactured!";
           this.closeForm();
         },
         (error) => {

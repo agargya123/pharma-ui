@@ -1,0 +1,34 @@
+<div>
+  <h2>Medicines Sold</h2>
+  <br />
+  <mat-accordion class="example-headers-align" multi *ngIf="listOfAllDrugs">
+    <mat-expansion-panel *ngFor="let drug of listOfAllDrugs; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>{{ i + 1 }}. Name: {{ drug._name }} | ID: {{ drug._id }}</h3>
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to view Details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <ul class="nobull">
+          <li><b>Generic Name: </b>{{ drug._batch.genericName }}</li>
+          <li><b>Amount sold: </b>{{ drug._amount }} tablets</li>
+          <li><b>Customer ID: </b>{{ drug._customerID }} (optional)</li>
+          <li><b>Date of sale: </b>{{ drug._dateSold | date }}</li>
+          <li><b>Invoice Number Attached: </b>{{ drug._invoiceNumber }}</li>
+        </ul>
+      </div>
+      <!-- <pre>{{ drug | json }}</pre> -->
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div [hidden]="listOfAllDrugs || errorMessage">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+  <div *ngIf="errorMessage" [style.textAlign]="'center'" [style.color]="'grey'">
+    <h3>{{ errorMessage }}</h3>
+  </div>
+</div>

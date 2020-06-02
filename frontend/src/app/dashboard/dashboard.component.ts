@@ -17,8 +17,8 @@ import { MethodService } from "../services/method.service";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  username: String;
-  role: String;
+  username: string;
+  role: string;
   methods: any[];
   config: MatSnackBarConfig;
 

@@ -42,7 +42,7 @@ export class ReceiveProductsFromManufacturerByDistributorComponent
       .receiveProductsFromManufacturerByDistributor(this.manubyDistForm.value)
       .subscribe(
         (data) => {
-          this.returnValue = data;
+          this.returnValue = "Drug Batches Received Successfully";
           this.closeForm();
         },
         (error) => {
