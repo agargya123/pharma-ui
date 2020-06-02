@@ -8,12 +8,36 @@ h1 {
 }
 
 .mat-card {
+    border: 2px solid;
+    border-color: #2196f3;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
 .mat-expansion-panel {
   margin-bottom: 15px;
+}
+
+.z-depth {
+    box-shadow: 0 6px 6px rgba(10,16,20,.15), 0 0 52px rgba(10,16,20,.12) !important;
+    transform: translate3d(0,0,0);
+    transition:  .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.z-depth:hover {
+    box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: backgound .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.mat-icon {
+    font-size: 50px;
+    text-align: center;
+    color: #ff4081;
+}
+
+.bt {
+    text-align: center;
 }
 
 .mat-spinner {
