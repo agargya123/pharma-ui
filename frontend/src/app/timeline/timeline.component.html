@@ -14,6 +14,9 @@
     <tr>
       <td><b>Date of purchase: </b> {{ drugDetails._dateSold | date }}</td>
     </tr>
+    <tr>
+      <td><b>Invoice Number: </b> {{ drugDetails._invoiceNumber }}</td>
+    </tr>
   </table>
 </div>
 
@@ -34,87 +37,166 @@
       [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
       [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'"
     >
-      <pre *ngIf="i == 0">
-      <table>
-        <h3 class="ce">Raw Materials Used</h3>
-        <tr><td>
-          <b>Name of the Supplier: </b>  {{entry|json}}</td></tr>
-        <li *ngFor="let salt of entry.value._salts;let j = index" type="none" > 
-          <tr><td>
-            <b>Salt Name: </b> {{entry.value._salts[j].salt.name}}</td></tr>     
-          <tr><td>
-            <b>Number of salt units supplied: </b> {{entry.value._salts[j].amount}}</td></tr>
-          <tr><td>
-            <b>Date of shipping to manufacturer:</b>  {{entry.value._salts[j].soldToManufDate | date:'yyyy-MM-dd HH:mm'}}</td></tr>    
-        </li>
+      <div *ngIf="i == 0" class="section-timeline">
+        <table>
+          <h3 class="ce">Raw Materials Used</h3>
+          <tr>
+            <td>
+              <b>Name of the Supplier: </b>
+              {{ entry.value._supplier.organizationName }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Supplier Authority Number: </b>
+              {{ entry.value._supplier.authorityNumber }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Supplier Address: </b> {{ entry.value._supplier.address }}
+            </td>
+          </tr>
+          <li
+            *ngFor="let salt of entry.value._salts; let j = index"
+            type="none"
+          >
+            <tr>
+              <td><b>Salt Name: </b> {{ entry.value._salts[j].salt.name }}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Number of salt units supplied: </b>
+                {{ entry.value._salts[j].amount }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Date of shipping to manufacturer:</b>
+                {{
+                  entry.value._salts[j].soldToManufDate
+                    | date: "yyyy-MM-dd HH:mm"
+                }}
+              </td>
+            </tr>
+          </li>
         </table>
-    </pre>
+      </div>
 
-      <pre *ngIf="i == 1">
-      <table>
-        <h3 class="ce">Manufacturing Details</h3>
-        <tr><td>
-          <b>Organisation Name: </b> {{entry.value._manufacturer.organizationName}}</td></tr>
-        <tr><td>
-          <b>Address:</b> {{entry.value._manufacturer.address}}</td></tr>
-        <tr><td>
-          <b>Authority Number: </b> {{entry.value._manufacturer.authorityNumber}}</td></tr>
-        <tr><td>
-          <b>FDA License Number: </b> {{entry.value._manufacturer.FDALicenseNumber}}</td></tr>
-        <tr><td>
-          <b>Manufacturing Date: </b> {{entry.value._manufacturingDate}}</td></tr>
-        <tr><td>
-          <b>Number of drug units manufactured: </b> {{entry.value._amount}}</td></tr>      
-        <tr><td>
-          <b>Date of Shipping to Distributor:</b> {{entry.value._dateShippedFromManufacturer}}</td></tr>
-      </table>  
-    </pre>
+      <div *ngIf="i == 1" class="section-timeline">
+        <table>
+          <h3 class="ce">Manufacturing Details</h3>
+          <tr>
+            <td>
+              <b>Organisation Name: </b>
+              {{ entry.value._manufacturer.organizationName }}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Address:</b> {{ entry.value._manufacturer.address }}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Authority Number: </b>
+              {{ entry.value._manufacturer.authorityNumber }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>FDA License Number: </b>
+              {{ entry.value._manufacturer.FDALicenseNumber }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Manufacturing Date: </b> {{ entry.value._manufacturingDate }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Number of drug units manufactured: </b>
+              {{ entry.value._amount }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Date of Shipping to Distributor:</b>
+              {{ entry.value._dateShippedFromManufacturer }}
+            </td>
+          </tr>
+        </table>
+      </div>
 
-      <pre *ngIf="i == 2">
-      <table>
-        <tr><td>
-          <b>Name of Distributor: </b> {{entry.value._distributor.organizationName}}</td></tr> 
-        <tr><td>
-          <b>Address of Distributor: </b>{{entry.value._distributor.address}}</td></tr>   
-        <tr><td>
-          <b>Shipping ID:</b> {{entry.value._shippingId}}</td></tr>
-        <tr><td>
-          <b>Date the shipment was received by Distributor: </b> {{entry.value._dateReceivedByDistributor}}</td></tr>  
-        <tr><td>
-          <b>Number of batch units received: </b> {{entry.value._distributor.batchReceived}}</td></tr>
-        <tr><td>
-          <b>Number of batch units shipped: </b> {{entry.value._distributor.batchShipped}}</td></tr>
-      </table>  
-    </pre>
+      <div *ngIf="i == 2" class="section-timeline">
+        <table>
+          <tr>
+            <td>
+              <b>Name of Distributor: </b>
+              {{ entry.value._distributor.organizationName }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Address of Distributor: </b
+              >{{ entry.value._distributor.address }}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Shipping ID:</b> {{ entry.value._shippingId }}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Date the shipment was received by Distributor: </b>
+              {{ entry.value._dateReceivedByDistributor }}
+            </td>
+          </tr>
+        </table>
+      </div>
 
-      <pre *ngIf="i == 3">
-      <table class="nobull">
-        <tr><td>
-          <b>Name of Pharmacy: </b> {{entry.value._pharmacist.organizationName}}</td></tr> 
-        <tr><td>
-          <b>Address:</b> {{entry.value._pharmacist.address}}</td></tr>   
-        <tr><td>
-          <b>Authority Number:</b> {{entry.value._pharmacist.authorityNumber}}</td></tr>          
-        <tr><td>
-          <b>Date on which batch was received by Pharmacist: </b> {{entry.value._dateReceivedByPharmacist}}</td></tr>  
-      </table>
-    </pre>
+      <div *ngIf="i == 3" class="section-timeline">
+        <table class="nobull">
+          <tr>
+            <td>
+              <b>Name of Pharmacy: </b>
+              {{ entry.value._pharmacist.organizationName }}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Address:</b> {{ entry.value._pharmacist.address }}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Authority Number:</b>
+              {{ entry.value._pharmacist.authorityNumber }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Date on which batch was received by Pharmacist: </b>
+              {{ entry.value._dateReceivedByPharmacist }}
+            </td>
+          </tr>
+        </table>
+      </div>
 
-      <pre *ngIf="i == 4">
-      <table class="nobull">
-        <h3 class="ce">Drug Details</h3>
-        <tr><td>
-          <b>Scientific Name of the Drug: </b> {{entry.value._name}}</td></tr>
-        <tr><td>
-          <b>Generic Name of the Drug: </b> {{entry.value._genericName}}</td></tr>
-        <tr><td>
-          <b>Expiry Date:</b> {{entry.value._expiryDate}}</td></tr>
-        <tr><td>
-          <b>Drug Batches Available: </b> {{entry.value._pharmacist.drugBatchsAvailable}}</td></tr>
-        <tr><td>
-          <b>Drug Batches Sold: </b> {{entry.value._pharmacist.drugsSold}}</td></tr>
-      </table>
-    </pre>
+      <div *ngIf="i == 4" class="section-timeline">
+        <table class="nobull">
+          <h3 class="ce">Drug Details</h3>
+          <tr>
+            <td>
+              <b>Scientific Name of the Drug: </b> {{ entry.value._name }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Generic Name of the Drug: </b> {{ entry.value._genericName }}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Expiry Date:</b> {{ entry.value._expiryDate }}</td>
+          </tr>
+        </table>
+      </div>
     </mgl-timeline-entry-content>
 
     <mgl-timeline-entry-dot

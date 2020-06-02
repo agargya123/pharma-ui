@@ -64,6 +64,8 @@ export class TimelineComponent implements OnChanges {
               .subscribe(
                 (entriesData) => {
                   this.entries = entriesData;
+                  console.table(this.entries);
+
                   if (!data || !this.entries) this.notFound = true;
                 },
                 (error) => {
